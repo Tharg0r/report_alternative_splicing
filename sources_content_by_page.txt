@@ -1,0 +1,1690 @@
+Florea:
+
+Page 55:
+Bioinformatics of alternative splicing
+and its regulation
+Liliana Florea
+Submitted: 3rd August 2005; Received (in revised form): 6th December 2005
+Abstract
+The sequencing of the human genome and ensuing wave of data generation have brought new light upon the extent
+and importance of alternative splicing as an RNA regulatory mechanism. Alternative splicing could potentially
+explain the complexity of protein repertoire during evolution, and defects in the splicing mechanism are responsible
+for diseases as complex as cancer. Among the challenges that rise in light of these discoveries are cataloguing splice
+variation in the human and other eukaryotic genomes, and identifying and characterizing the splicing regulatory
+elements that control their expression. Bioinformatics efforts tackling these two questions are just at the beginning.
+This article is a survey of these methods.
+Keywords: alternative splicing; gene indices; genome-based clustering; splice graph; splicing enhancers; splicing silencers
+INTRODUCTION
+Alternative splicing of pre-mRNA has captured the
+attention of the genomics community as an
+important regulatory mechanism for modulating
+the gene and protein content in the cell. The
+discovery that many genes can produce multiple
+mRNA and protein isoforms, through the regulated
+selection of different combinations of exons for
+inclusion into the mRNA, changed irreversibly the
+outlook of many important genomics problems such
+as the annotation of genes and their regulation, and
+inspired hypotheses reaching far into the biomedical
+and evolutionary biology areas.
+The phenomenon of alternative splicing was
+discovered in concept in the late 1970s [1], and
+was then verified experimentally in the 1980s [2],
+but the real revolution in alternative splicing
+occurred about the time of the sequencing of the
+human genome. The availability of large EST and
+mRNA data sets stimulated large-scale analyses
+which estimated that as many as 60% of the human
+genes undergo alternative splicing to create multiple
+transcript isoforms [3–5]. High levels of splicing
+have been estimated in other mammals recently
+sequenced, such as mouse and rat [6, 7]. Thus,
+alternative splicing appears to be the rule rather than
+the exception in gene expression. With the recent
+slashing of the number of human genes down to
+25 000 [8], scientists have turned to alternative
+splicing as a mechanism to potentially explain how
+a large variety of proteins can be achieved with a
+relatively small number of genes [9], and ultimately
+to explain the paradox between gene content and
+the complexity of organisms. On a more immediate
+timescale, errors in the splicing mechanism and its
+regulation have been investigated as triggers in a
+number of diseases, including cancers [10–12], and
+such studies may lead to new tools for diagnostics
+and treatment [13–15].
+Alternative splicing is the process through which
+different combinations of exons within a gene are
+spliced from the RNA precursor to be included in
+the mature mRNA depending upon the tissue,
+developmental stage and disease versus normal
+conditions of the cell. The resulting proteins may
+exhibit different and sometimes antagonistic func-
+tional and structural properties [13, 16], and may
+inhabit the same cell with the resulting phenotype
+being the balance between their expression levels
+[17]. From a gene structure standpoint, alternative
+splicing at internal exons manifests itself in four types
+
+Page 56:
+b.
+c.
+d.
+e.
+5′
+f.
+3′
+Figure 1: Types of alternative splicing events: ( a). exon
+inclusion/exclusion; (b). alternative 30 exon end; ( c).
+alternative 50 exon end; ( d). intron retention; ( e). and
+( f). 50 and 30 alternative untranslated regions (UTRs).
+The schematic representation shows exons as boxes,
+and introns as straight or segmented lines connecting
+the exons. Alternatively spliced elements (exons or
+portions of exons) are shown in dark grey, and those
+constitutively spliced in light color.
+of events, depicted in Figure 1a–d: exon inclusion
+and/or exclusion, alternative 50 exon end, alternative
+30 exon end, and intron retention. Alternative
+50 and 30 untranslated regions (UTRs) are often
+encountered (Figure 1e–f), but in general are harder
+to identify and characterize due to noisy data and the
+intrinsic difficulty in identifying the gene boundaries.
+Consequently, they have not been reflected with the
+same prevalence in bioinformatics methods and
+literature.
+The two most important reverberations of
+alternative splicing in bioinformatics and computa-
+tional biology are in the areas of gene annotation and
+splicing regulation [18]. Traditionally, gene discov-
+ery was accomplished with a combination of ab initio
+and comparative methods designed to identify linear
+exon–intron models of genes along a genomic
+sequence [19]. Following the sequencing of the
+human genome, large-scale annotation projects at
+the major genomics centers (Ensembl [20], UCSC
+Genome Browser database [21], Celera Genome
+Browser and Otto annotation system [22]) typically
+employed a variety of prediction methods to
+produce ‘evidence’ for the gene, and used a ‘combiner’
+algorithm to consolidate the different lines of
+evidence into a representative gene model. Lastly,
+alternatively spliced forms were added to the
+automated annotation by human curators in their
+effort to improve the quality and completeness of
+the data set. Such sets were tedious to create and
+captured only partly the repertoire of splicing
+variation. More recently, the gene annotation land-
+scape has changed to incorporate alternatively spliced
+transcripts or alternative splicing events as an integral
+part of the annotation process. There has recently
+been a concomitant increase in the number of
+repositories containing and cataloguing alternative
+splicing information.
+Equally important is the question of what causes
+and/or controls the variation in splicing. Unlike
+transcriptional control exercised from the promoter,
+which modulates exclusively the amount of gene
+expression, the control of alternative splicing deter-
+mines the abundance, structure and function of
+transcripts and encoded proteins from a gene, and
+can alter such salient properties of proteins as binding
+affinity, intracellular localization, enzymatic activity,
+stability and post-translational modifications [23].
+Furthermore, exon selection in alternative splicing
+can be tissue, developmental stage or disease specific
+[13, 24], or can change in response to external
+stimuli such as receptor stimulation, cellular stress or
+changes in neuronal activity [25]. Thus, the regula-
+tion of alternative splicing presents a more versatile
+and finer granularity control than transcriptional
+regulation.
+Most of the splicing regulation that is not part of
+the basal spliceosome function is known to be
+undertaken by families of splicing regulatory pro-
+teins. These splicing factors bind to signals in the
+vicinity of the exon and promote the exon’s
+inclusion or exclusion by activating or inhibiting
+the function of the splice site. The number of classes
+and characteristics of these regulatory proteins and
+their RNA binding sites are relatively little known
+and are currently under active investigation.
+In this article, we present an overview of
+bioinformatics methods to date to identify,
+
+Page 57:
+characterize and catalogue alternative splicing and its
+regulation.
+IDENTIFICATION OF SPLICE
+VARIANTS
+While different tissues or cell types in an organism
+have roughly the same genome, their transcriptomes
+could be significantly different. The end goal of
+alternative splicing annotation is to identify and
+catalogue all mRNA transcripts in the cells of an
+organism at various stages, together with relevant
+information about their spatial and temporal expres-
+sion and function. This is analogous to the gene
+annotation problem that has been in the cross hairs
+for the past two decades. Given the incomplete and
+fragmented nature of the data and the insufficient
+experimental characterization, this goal is currently
+difficult to achieve, if not impossible (specific
+challenges are listed in the forthcoming sections).
+A variation that is more readily attainable and can
+be just as powerful for practical purposes, such as
+designing diagnostic markers that can be tested
+in vitro via microarray and proteomic experiments
+[26] or in silico [27] is that of identifying and
+annotating splice forms, i.e. mutually exclusive
+splicing patterns inferred from partial cDNA and/or
+protein sequences, or exon-level alternative spli-
+cing events. Of particular interest are exons or
+combinations of exons that undergo different
+splicing patterns.
+Bioinformatics
+Approaches for identifying full-length splice variants
+or just splice forms typically involve the comparison
+of two or more expressed DNA or protein sequences
+of different isoforms to detect differences caused by
+insertions or deletions of genetic material. Direct
+comparison between the sequences of different
+cDNA and protein isoforms (Figure 2a) reveals the
+differences between the sequences compared, but
+does not characterize them in the context of the
+gene’s structure. The observed difference can be an
+exon, part of an exon, or a set of consecutive exons
+and exon portions. In contrast, comparisons of
+exon^intron structures from cDNA- or protein-
+genomic spliced alignments clearly distinguish
+among the types of alternative splicing events
+(Figure 2b) and provide an extended genomic
+context in which the nearby splicing regulatory
+regions can be explored.
+Sequence data
+Computational approaches rely on cDNA and
+protein sequences collected in large repositories in
+GenBank and around the world. Database for
+expressed sequence tags (dbEST) [28] contains
+single-pass EST sequences from direct submissions
+to GenBank. RefSeq [29] is an NCBI effort to
+collect, review and curate full-length mRNA
+sequences from submissions or gene prediction
+projects. More recently, the Mammalian Gene
+Collection (MGC) project [30] was started as an
+NIH initiative to clone and sequence full-length
+open reading frames (ORFs) for human, mouse and
+rat genes. Protein sequences can be obtained from
+databases such as SwissProt, TrEMBL and PIR,
+currently united into the Universal Protein
+Knowledgebase UniProt [31]. The quality and
+characteristics of the data may differ significantly,
+and thus in judging the potential for identified
+differences to represent true alternative splicing
+events considerations about the type, quality and
+reliability of data are important.
+Alignment tools
+A number of specialized programs have been
+developed to align cDNA sequences to genomic
+sequences allowing for sequencing errors, poly-
+morphisms and introns, such as EST_GENOME
+[32], Sim4 [33], Spidey [34], and GeneSeqer [35].
+These programs were designed specifically to
+compare a cDNA with the restricted genomic
+range encompassing the gene. With the availability
+of whole genome sequences, new generation tools
+were developed to efficiently map large cDNA data
+sets to large chromosomal sequences and whole
+genomes. Examples include Blat [36], ESTmapper
+[37], MGAlignIt [38], and GMAP [39]. Given a
+cDNA sequence, each of these programs generates a
+spliced alignment of the cDNA and the genomic
+sequence. The alignment clearly marks the locations
+of exons and introns in the two sequences and gives
+additional information about the match, such as the
+predicted strand and alignment quality statistics.
+Although all of these programs have reached a high
+level of accuracy, challenges remain in dealing with
+non-canonical splice junctions, high EST sequencing
+error rates or specific types of sequencing errors,
+detecting small exons and/or large introns, and
+correctly determining the true location of the cDNA
+on the genome 
+
+Page 58:
+Figure 2: Bioinformatics methods for identifying alternative splicing. ( a) Identification of alternative splicing events
+by direct comparison of cDNA sequences (b) comparison of exon ^ intron structures on the genome, ( c) microarray
+experiments. In comparisons between pairs of cDNA sequences ( a), alternatively spliced features appear as insertions
+in one sequence compared to the other.Comparison of exon ^ intron structures from spliced alignments of cDNAs on
+the genome (b) reveal the exons and introns undergoing alternative splicing. In ( c), microarray GeneChip expression
+data using multiple probes per gene show potential alternative splicing events as groups of probes that are differentially
+expressed between the two experiments (probes p4 and p5 in exon 2). ( d). Clustering and assembly of EST sequences
+into transcript-oriented groups and contigs. ( e) EST sequences from the 50 and 30 ends of the gene are compared to
+identify compatible overlaps and then assembled into consensus sequences (TC1, TC 2) representing putative splice
+variants. Spliced alignments of cDNAs on the genome (E1^E5) are clustered along the genomic axis and consolidated
+into splice graphs.Vertices in the splice graph represent exons (a ^ h), arcs are introns connecting the exons consistently
+with the cDNA evidence, and a branching in the graph signals an alternative splicing event. Splice variants (V1^V4) are
+read from the graph as paths from a source vertex (with no ‘in’ arc) to a sink vertex (with no ‘out’ arc). In some systems,
+they are assigned scores based on the strength of the supporting evidence, based on which high-scoring candidates are
+selected for inclusion into the annotation and/or for validation experiments.
+BIOINFORMATICS METHODS
+Since identifying partial splice forms and alternative
+splicing events via differences between different
+isoforms is intuitive, subsequently we focus on the
+more complex task of annotating full-length alter-
+natively spliced transcripts. Such methods include
+gene indices, which assemble putative splice variants
+from overlapping EST and mRNA sequences
+without resorting to a reference genome, and
+genome-based methods for clustering spliced
+alignments and inferring gene models.
+Gene indices
+Gene indices are gene- or transcript-oriented
+collections of EST and mRNA sequences grouped
+by sequence similarity. Traditional methods compare
+all EST and mRNA sequences against each other
+to identify significant overlaps, then group and
+
+Page 59:
+assemble sequences with compatible overlaps into
+disjoint clusters (Figure 2d). The term ‘gene indices’
+may be used to refer to the annotated collec-
+tions of sequences (UniGene [40]), to the
+multiple alignments of sequences in the clusters,
+or to the consensus sequences generated from the
+multiple alignments (TIGR Gene Indices [41],
+GeneNest [42]).
+Constructing gene indices is complicated by a
+number of factors. Over-clustering may occur when
+differences between paralogs are interpreted as
+sequencing errors, forcing paralogs into a same
+cluster, or when contamination of ESTs with
+vector or linker sequences or residual polyA tails
+creates false appearances of overlaps. Other times,
+insufficient EST sampling may result in under-
+clustering, where several disconnected clusters are
+produced for a same gene. Furthermore, the process
+is computationally expensive, as the time required
+by the pairwise comparisons increases quadratically
+with the number of sequences in the set. To alleviate
+these problems, methods were developed to trim
+the vector and low-quality ends of the EST
+sequences prior to the comparison, pre-cluster the
+sequences by aligning EST sequences against the
+known primary mRNA form (seeded clustering),
+and to a priori cluster almost identical or con-
+tained sequences to reduce the complexity of the
+clustering [43].
+Genome-based clustering and assembly
+In the genome-based approach, the spliced align-
+ments of cDNA and protein sequences are clustered
+at loci along the genomic sequence. To distinguish
+among possibly different genes sharing the same
+
+Page 60:
+genomic locus, including overlapping genes and
+sense–antisense transcripts [44], clustering is often
+refined to group alignments separately on each strand
+of the genomic sequence, and requires that the
+sequences share common splice junctions in addition
+to overlapping exons.
+One recent innovation in alternative splicing
+annotation has been the concept of a splice graph,
+as a model for concisely capturing splice variations
+within a gene. The splice graph represents a gene
+as a directed acyclic graph in which exons are
+represented as vertices, introns are the arcs connect-
+ing the exons, and splice variants are the paths
+obtained by traversing the graph from a source
+vertex (with no incoming arcs) to a sink vertex
+(with no outgoing arcs). With this set of rules,
+cDNA and protein spliced alignments at a genomic
+locus can be consolidated into a spliced graph
+(Figure 2e) and candidate full-length splice variants
+can be enumerated from the graph in a combinato-
+rial fashion. The combinatorial nature of the splice
+graph is also, however, the main limitation of the
+model, since some of the exon combinations it
+encodes may be artificial constructs without bio-
+logical relevance. Different methods have been
+proposed to select or prioritize candidate transcripts
+in order to differentiate between those most likely
+to be biologically relevant and those likely to be
+artifactual. For instance, the annotation intergrated
+resource AIR annotation pipeline [37] assigns splice
+variants confidence scores based on a set of four
+characteristics measuring the strength of the support-
+ing cDNA and protein evidence, such as the quality
+and length of the supporting alignments, accuracy
+of splice signals and the level of fragmentation
+of the evidence. High-scoring candidates are later
+selected and promoted into the annotation. The
+ECgene [45] system classifies candidate transcripts
+into three categories, high-, medium- and low-
+confidence, based on the number of cDNA align-
+ments that were stitched together to construct it.
+Other methods simply defer the task of transcript
+selection to the users, but provide additional
+information and visualization to aid in the analysis
+[46, 47].
+The genome-based approaches solve a number of
+deficiencies observed with the gene indices. By
+mapping the ESTs to the genome contamination
+from foreign matter, such as vector and linker
+sequences, or from polyA tails are removed.
+In addition, the sequencing errors that were
+compounded between the cDNA sequences in the
+gene indices method are now resolved by aligning
+the sequence against the genome, used as reference.
+As a result, fewer sequences are misplaced along the
+genome, resulting in considerably less clustering
+of paralogs. However, genome-based clustering has
+its own set of limitations. Some of the remaining
+issues that have to be resolved involve the contam-
+ination of ESTs with genomic fragments or
+incompletely spliced forms that could produce
+over-clustering of neighboring or overlapping
+genes, errors in the alignment, particularly inaccuracy
+of splice junctions and missing short exons, and
+strand prediction. Other limitations of the splice
+graph model include its inability to fully capture
+splicing variations where one variant is a 50 or 30
+extension of another, and its sensitivity to alignment
+errors, as one spurious exon may double the number
+of candidates.
+Identifying splice variation from
+microarray data
+Recently, the Affymetrix chip design using multiple
+probes per gene has been used to identify splice
+variations. The Affymetrix GeneChip technology
+uses 22 probes collected from within the exons
+or straddling the exon boundaries in the 30UTR
+of the sampled genes (Figure 2c). When an exon
+is alternatively spliced between two microarray
+experiments, the expression level of its probes in
+the two arrays will be different and, in at least one
+of the experiments, significantly dissimilar to those
+of their neighbors. Thus, statistical tests were
+developed to determine the significance of these
+differences and to predict alternative splicing events
+[48, 49].
+RESOURCES FOR
+ALTERNATIVE SPLICING
+The recent years have witnessed a growth in
+the number of resources—programs, databases and
+web servers—for the identification and analysis of
+alternative splicing, directly reflecting the variety of
+data generation methods. A summary of these
+resources is given in Table 1.
+A growing number of databases have emerged that
+collect instances of alternative splicing events inferred
+computationally from pairwise comparisons of cDNA
+and protein sequences (PALSdb [52], EASED [55]),
+their genomic exon-intron structures (ASAP [50],
+
+Page 61:
+AltExtron and AltSplice [51], SpliceInfo [54]), or
+GenBank annotations (AsMamDb [53]). In addition
+to sequence and splicing-related information, they
+may contain annotations such as tissue specificity,
+developmental stage, expression data, exon GC and
+repeat content, conservation in other species and
+the biological function where known. In contrast,
+the AEDB database maintained as part of the
+alternative splicing database (ASD) [51] contains
+experimentally identified alternatively spliced exons
+and splicing regulatory signals extracted from the
+literature, with links to relevant MEDLINE entries
+documenting the events.
+In addition to databases, several programs
+and software pipelines for predicting genes and
+alternatively spliced transcripts based on genomically
+aligned cDNA and protein sequences have been
+developed to support genome annotation projects:
+ClusterMerge [57] produces the Ensembl ESTgenes,
+AIR [37] was used to annotate the Celera rat
+genome, and PASA [56] reconstructed transcripts in
+the TIGR annotation of Arabidopsis thaliana. Outside
+the spectrum of genome annotation projects, ASG
+[46] provides internet accessible splice graphs for
+several eukaryotic genomes and ASmodeler [58]
+allows users to create their own splice graph
+annotations via a web interface.
+Lastly, the most comprehensive gene index
+collections to date are the TIGR Gene Indices [41]
+and the NCBI UniGene collection [40].
+
+Page 62:
+HURDLES IN ALTERNATIVE
+SPLICING ANNOTATION
+Although tremendous strides were taken in the past
+few years to identify and catalogue splice variation
+in the human and other eukaryotic genomes, this
+chapter of genomics is still very much a draft. Among
+the factors that continue to confound annotation
+methods are:
+(i) EST quality—contamination of EST sequences
+with genomic, cross-species and vector
+sequences, high sequencing error rates,
+chimeras;
+(ii) alignment accuracy—ambiguity of predicted
+strands, alignment errors, particularly at the
+splice junctions, missing exons;
+(iii) limitations in models and data—insufficient
+data, for instance for tissue-specific clustering,
+EST fragmentation; and
+(iv) complexity of biological processes—paralogs,
+trans-splicing, sense–antisense transcripts and
+overlapping genes.
+With its far-reaching implications for biology
+and medicine, identifying and characterizing alter-
+native splicing variation is becoming an important
+part of the effort for detecting and cataloguing
+the genes. Thus, developing a comprehensive
+catalogue of splicing variation will require
+mobilization to produce fast and accurate tools for
+automatic annotation, coupled with an assiduous
+curation effort and high-throughput validation
+by sequencing, RT–PCR and microarray
+experiments [59].
+ALTERNATIVE SPLICING
+REGULATION
+An equally intense area of research in alternative
+splicing revolves about the factors and mechanisms of
+splicing regulation.
+Pre-mRNA splicing is a complex cellular process
+undertaken in the cytoplasm by the spliceosome.
+The spliceosome assembles onto each intron from a
+set of five small nuclear ribonucleoproteins (snRNPs
+U1, U2, U4–U6) and numerous accessory proteins
+that bind specifically to locations at or within the
+vicinity of the splice sites, and catalyzes the excision
+of the intron [60]. While the 50 (donor) and 30
+(acceptor) splice sites have well characterized con-
+sensus sequences that are recognized to play a major
+role in splicing, an increasing body of evidence
+reveals that previously unknown RNA elements
+located outside the splice signals, in exons and
+introns, contribute to the exon’s inclusion or
+exclusion in the mature mRNA, in a network of
+interactions that appear to be centered on exons,
+rather than introns. These cis-regulatory elements
+can promote (splicing enhancers) or repress (splicing
+silencers) the inclusion of the exon in the mRNA
+through the activity of the bound regulatory
+proteins, and can be located in the exons—exonic
+splicing enhancers (ESEs) and silencers (ESS), or
+introns—intronic splicing enhancers (ISE) and silencers
+(ISS). They can act from both within the proximity
+of the exon, or from 300–1000 bp away. It is
+becoming increasingly evident that many exons,
+constitutive or alternative, and their surrounding
+introns harbor both silencing and enhancing ele-
+ments, and that the exon’s inclusion/exclusion is the
+result of competition between the two effects [61].
+Mechanisms of splicing activation
+Exonic enhancers are the binding sites of splicing
+activator proteins, the most studied activators being
+the SR (Ser/Arg) factors. The SR proteins are
+characterized by the presence of 1–2 RNA recogni-
+tion motifs (RRM), and a C-terminal RS-domain
+enriched in Arg/Ser dipeptides. The primary
+mechanism by which they promote splicing is by
+attaching to enhancer elements within the exon or in
+the polypyrimidine tract via their RRM domain and
+recruiting the U2AF factor with their RS domain.
+An RS-domain independent mechanism has also
+been hypothesized, in which the splicing factor binds
+to an ESE to antagonize the effect of a neighboring
+silencer [62] (Figure 3a,b). Exonic splicing enhancer
+motifs have been characterized through a variety of
+bioinformatics methods and through functional
+experiments. Their mechanism, diversity and action
+were reviewed in [63].
+Mechanisms of splicing repression
+Splicing silencers are thought to be binding sites of
+splicing repressor proteins. Splicing repression is
+effected largely through the activity of the hnRNP
+protein families. Of these, hnRNP I, also known as
+PTB [64], members of the hnRNP A/B families, and
+the neuron-specific NOVA-1 inhibitor [65] are
+among the best characterized. Several mechanisms
+have been proposed for hnRNP-mediated silencing
+(Figure 3c–e): by interfering with the spliceosome
+
+Page 63:
+Figure 3: Mechanisms of alternative splicing regulation: ( a, b). activation; ( c^e). repression. ( a) Splicing activation is
+enabled primarily through the activator function of the RS-domain of an SR protein bound to an ESE element through
+its RRM domain, (b) or can be RS-domain independent, with the activator blocking the action of a nearby silencing
+element in direct competition. ( c) Splicing repression is accomplished primarily by hnRNP proteins, either by neutraliz-
+ing the effect of an activator protein through direct competition, ( d) or by cooperative binding of several silencing
+factors that displace the ESE-bound activators ( e), or by binding to motifs on either side of the exon followed by dimer-
+ization, which places the exon in a loop inaccessible to the splicing apparatus.
+assembly through cooperative binding of several
+inhibitory elements, by blocking neighboring ESEs,
+or by binding to duplicate intronic sequences
+on both sides of the exon to form a loop that
+renders the exon inaccessible to the spliceosome.
+Experimentally identified or validated ISS sequences
+were reviewed in [66].
+regulatory sites, the specific challenges associated
+with identifying splicing regulatory sites arise from
+the fact that few proteins have been identified, and
+that the full extent of splicing regulatory factors,
+including the number of proteins and the prevalence
+of their binding sites on the pre-RNA sequence,
+cannot be estimated yet.
+BIOINFORMATICS METHODS FOR
+IDENTIFYING SPLICING
+REGULATORY ELEMENTS
+Methods for identifying and characterizing splicing
+regulatory elements are still in their infancy, varying
+from experimental to computational and from
+focused to large-scale, and can be centered on the
+splicing factors (proteins) or their binding sites.
+Emphasizing that all types of approaches have
+produced valuable results, we hereto focus on
+computational methods. While there are many
+similarities with the detection of transcriptional
+Consensus sequences
+Most early work on splicing enhancers targeted
+purine-rich exonic elements that were thought to be
+binding sites of SR proteins (Table 2) and produced a
+number of site consensus sequences [62]. A con-
+sensus sequence uses IUPAC codes to specify what
+symbols are allowed at every position in the motif’s
+sequence, but cannot quantify the preference for
+certain symbols at a given motif position. The
+purine-rich model for regulatory sequences was put
+to rest when ESE sequences in IgM and in the avian
+sarcoma pre-mRNA were found to retain their
+
+Page 64:
+Table 2: Consensus motifs for SR protein dependent
+enhancers [62]. Reproduced with permission from
+Nature Reviews Genetics, Vol. 3, pp. 385 ^398, copyright
+(2002) Macmillan Magazines Ltd
+Protein High-affinity binding site* Functional ESE*
+SRp20 WCW WC GCUCCUCUUCC
+CUCKUCY CCUCGUCC
+SC35 AGSAGAGUA GRYYMCYR
+GUUCGAGUA UGCYGYY
+UGUUCSAGUAGKS
+AGGAGAU
+9G8 (GAC)n
+ACGAGAGAY
+WGGACRA
+SF2/ASF RGAAGAAC CRSMSGW
+AGGACRRAGC
+SRp40 UGGGAGCRGUYRGCUCGY YRCRKM
+SRp55 YYWCWSG
+TRA2b (GAA)n
+*IUPAC codes: M¼ A or C; R¼ A or G; W¼ A or U; Y¼C or U; S¼ C
+or G; K¼G or U
+effect in vitro even after their purine-rich stretches
+were eliminated [67, 68].
+Position weight matrices
+Position weight matrices (PWMs) are a more suitable
+model for specifying the variability of symbols in a
+motif sequence. The PWMs are matrices of scores
+constructed from the nucleotide frequencies at
+each position within the motif, typically derived
+from a collection of experimentally identified
+sites (Figure 4). A PWM specifies a score for each
+nucleotide at every motif position. The score of a
+candidate oligonucleotide sequence is then com-
+puted as the sum of the individual nucleotide score
+contributions, and used as an indicator for the
+reliability of the match: the higher the score, the
+stronger and more reliable the match. The PWMs
+for four splicing activator factors, SF2/ASF, SC35,
+SRp40 and SRp55, were constructed from align-
+ments of binding sites identified with functional
+in vivo and in vitro systematic evolution of ligands by
+exponential (SELEX) enrichment experiments using
+a minigene construct to test the effects of ESEs on
+splicing [69]. These are the only experimentally
+derived PWMs of splicing factors to date.
+Statistical over-representation of k-mers
+Statistical methods, emblematic for post-genome
+large-scale genomics, aim at identifying sequence
+elements that are enriched in one class of contexts,
+defining the biological setting of the element sought,
+compared with another, defining the background or
+null setting. Typically, the candidate sequence
+elements are simple oligonucleotides of length k
+(k-mers), thought to form the core of splicing
+regulatory motifs. The methods start with the set
+of all k-mers, for a value of k selected based on
+statistical or empirical considerations, and assign them
+scores that measure the difference between the
+oligonucleotide frequencies in the two types of
+contexts. Thus, the first step of such methods consists
+of identifying a number of attributes that biologically
+characterize the elements, and the two sets of
+contexts, ‘functional’ versus ‘null’, for each attribute.
+Each candidate k-mer is then assigned a value for
+each attribute that statistically characterizes its relative
+positioning between the two contexts. Lastly, a set
+of candidate k-mers that show statistically significant
+differences between the two contexts for each of the
+attributes is selected for further analysis or for
+validation in vivo or in vitro.
+Several variations of this model have been used
+under different biological assumptions, or attributes.
+Fairbrother et al. [71] started from the following
+assumptions about ESE elements: (i) ESE motifs are
+more likely to occur in exons than in introns; and
+(ii) ESE motifs are more likely to occur in weak
+exons (with non-consensus splice sites) than strong
+exons (with consensus splice sites). For k¼ 6, the
+score function for each of the 4096 6-mers was
+calculated as the difference between the frequency of
+the k-mer in exons versus introns, and in weak versus
+strong exons, scaled by the standard deviation of the
+sample. Candidates that showed significant enrich-
+ment in both tests, corresponding to a scaled differ-
+ence value larger than 2.5 (or equivalently, with
+scaled differences >2.5 standard deviations) were
+selected. These hexamer sequences were then
+clustered by sequence similarity and aligned to
+form PWMs for ESE motifs. A similar approach
+led to the computational rediscovery of the
+UGCAUG hexanucleotide motif in introns proximal
+to brain-tissue specific alternative exons, by compar-
+ing the frequency of the hexamer in introns down-
+stream of constitutive versus alternatively spliced
+exons [72]. The motif had been previously experi-
+mentally identified as part of a splicing enhancer
+for exon N1 in the c-src gene [73]. In another study,
+Zhang and Chasin [74] focused on constitutive
+splicing and searched for 8-mers over-represented in
+internal noncoding exons, thought to contain signals
+
+Page 65:
+Figure 4: Bioinformatics representations of splicing regulatory motifs: ( a) consensus sequence and (b) position
+weight matrix (PWM). A consensus sequence specifies the set of bases that can appear at each position in the motif,
+using accepted IUPAC letter codes to represent combinations of bases. A PWM is a more expressive representation,
+incorporating the expected proportions of bases at each position in the motif. A PWM has a score for each base (A, C,
+G, T shown on rows) at each position in the motif sequence (shown along columns), derived from the site nucleotide
+counts (N) and frequencies (f ) with a log-odds formula [70].The score for a candidate nucleotide sequence is the sum
+of individual nucleotide scores at the corresponding motif positions: the higher the score, the better the match and the
+more likely to be real.
+that would mediate splicing, compared to unspliced
+pseudoexons and 50 UTRs of transcripts of intronless
+genes.
+Motif discovery
+Motif discovery methods commonly used in identi-
+fying transcription factor binding motifs in unaligned
+sequences, such as MEME [75] and Gibbs sampling
+[76], can also be employed to identify splicing
+regulatory signals. Although they achieved some
+success in identifying two regulatory motifs in
+introns surrounding 54 alternatively spliced exons
+[77], it is hard to estimate what their predictive
+power will be in a large set of diverse sequences,
+harboring a potentially wide variety of regulatory
+signals with low sequence specificity. For best results,
+pre-selecting and curating the data, for instance
+by selecting tissue-specific events, or validating the
+results with an independent method, such as
+comparative studies of alternatively spliced exons
+in the human and mouse species [77], is essential.
+Comparative studies
+Conserved regions in alignments of orthologous
+introns of human and mouse, or similarly related
+species, provide good candidates for functional
+sequences. Surprisingly, in the context of alternative
+splicing, comparative methods have focused less on
+predicting specific splicing regulatory signals and
+more on characterizing the large-scale patterns of
+sequence conservation [78, 47], or on validating
+motifs identified by other methods [77]. For instance,
+intronic sequences flanking alternatively spliced
+exons compared to constitutive exons were found
+to be more strongly conserved between human and
+mouse, thus suggesting that their splicing mecha-
+nisms may be different from those of constitutively
+spliced exons [78].
+Identification of regulatory signals within coding
+sequences of exons by sequence comparison is further
+complicated by the fact that additional selective
+pressure is imposed on the coding sequence by the
+necessity to preserve the protein. Several studies
+
+Page 66:
+showed that purifying selective pressure may act
+against silent mutations in certain regions in the
+coding sequence [79], and that the phenomenon is
+more pronounced in alternatively spliced exons [80].
+There are also indications that exonic portions of
+splice sites may undergo positive selection to stabilize
+during the evolution of introns after insertion [81].
+These findings may herald new methods, based on
+sequence evolutionary models and tools and taking
+advantage of the large volumes of multi-species data
+becoming available. Already, Blanchette [82] used
+phylogenetic methods to distinguish between con-
+servation due to amino acid constraints and con-
+servation due to regulatory factors in predicting
+splicing regulatory signals in coding sequences.
+has reemerged as a central concept in the post-
+genome sequencing era. Determining the extent and
+importance of alternative splicing required the
+confluence of critical advances in data acquisition,
+improved understanding of biological processes and
+the development of fast and accurate computational
+analysis tools.
+While tremendous progress has been made in
+annotating alternative splicing variations and
+exploratory steps were taken into the regulation of
+alternative splicing, there is a long path to fully
+understanding how it manifests itself in the cell and
+what are the determining factors to be able to use
+and interpret this information in disease diagnostics
+and treatment. In creating an alternative splicing
+compendium, comparative and functional genomics
+efforts must address immediate challenges such as
+improving the accuracy of annotations by differ-
+entiating informative events from experimental or
+computational artifacts and by evaluating the accu-
+racy of existing methods, as well as medium- to
+long-term goals, including the systematic generation
+of EST and mRNA sequences from a variety of
+tissues and under various cell conditions, the
+development of new methods for the prediction
+and analysis of splicing regulatory elements and
+mechanisms, and breakthroughs in high-throughput
+technologies for in vitro and in vivo validation and
+functional characterizations. These are the first steps
+toward the genetic medicine of the future.
+RESOURCES FOR ALTERNATIVE
+SPLICING REGULATION
+The repertoire of resources to aid in annotating
+splicing regulatory regions reflects the early state of
+bioinformatics and experimental studies in this area.
+A web-based tool, called ESEfinder, was implemen-
+ted to allow users to search their sequences for
+matches to the binding motifs of four splicing
+activators identified by SELEX experiments, SF2/
+ASF, SC35, SRp40, SRp55 (http://rulai.cshl.edu/
+tools/ESE/) [83]. Another web-based tool,
+RESCUE-ESE [84], searches user-input sequences
+for the presence of specific 6-mer motifs previously
+identified as potential cores of splicing regulatory
+motifs by statistical over-representation methods
+(http://genes.mit.edu/burgelab/rescue-ese/). The
+SpliceInfo [54] alternative splicing environment
+(http://spliceinfo.mbc.nctu.edu.tw/) provides tools
+for the discovery of sequence or structural motifs
+(Mfold [85], Gibbs sampling [76], MEME[75]) in
+sequences of annotated exons and introns, while
+the AEDB [51] database (http://www.ebi.ac.uk/asd/
+aedb/) collects experimentally identified splicing
+regulatory sites and sequences from the literature.
+Lastly, more general sequence alignment and
+visualization tools such as PipMaker [86] (http://
+pipmaker.bx.psu.edu/pipmaker/) and Vista [87]
+(http://genome.lbl.gov/vista/mvista/submit.shtml)
+can aid in the discovery of intronic regulatory signals.
+Key Points
+Alternative splicing has important implications for biology and
+medicine.
+Identifying all splice variations and the signals that regulate spli-
+cing are core problems in genomics and bioinformatics.
+Large EST data sets and sequence data from multiple genomes
+are fueling efforts to develop new computational methods to
+address these problems.
+Downloaded from https://academic.oup.com/bib/article-abstract/7/1/55/263665 by guest on 14 April 2020
+Acknowledgment
+Thanks to Rosane Charlab for her careful review of the
+manuscript.
+CONCLUSIONS
+Alternative splicing is without doubt one of the most
+important gene regulatory mechanisms, and one that
+References
+1. 2. Gilbert W. Why genes in pieces?. Nature 1978;271:501.
+Breitbart RE, Andreadis A, Nadal Ginard B. Alternative
+splicing: a ubiquitous mechanism for the generation of
+multiple protein isoforms from single genes. Ann Rev Bioch
+1987;56:467–95.
+3. Mironov AA, Fickett JW, Gelfand MS. Frequent alterna
+
+Page 67 is just more references
+
+
+Liu et al.:
+
+Page 1228:
+Impact of Alternative Splicing on the Human
+Proteome
+Graphical Abstract
+Authors
+Yansheng Liu, Mar Gonza ` lez-Porta,
+Sergio Santos, ..., Ruedi Aebersold,
+Ashok R. Venkitaraman,
+Vihandha O. Wickramasinghe
+Correspondence
+aebersold@imsb.biol.ethz.ch (R.A.),
+arv22@mrc-cu.cam.ac.uk (A.R.V.),
+vi.wickramasinghe@petermac.org
+(V.O.W.)
+In Brief
+Liu et al. have developed an integrative
+approach to ask whether perturbations in
+mRNA splicing patterns alter the
+composition of the proteome. Their
+findings illustrate how RNA splicing links
+isoform expression in the human
+transcriptome with proteomic diversity
+and provides a foundation for studying
+perturbations associated with human
+diseases.
+Highlights
+d Integrative approach to study contribution of alternative
+splicing to proteome
+d Changes in isoform usage alter protein abundance
+proportionate to transcript levels
+d Intron retention is accompanied by decreased protein
+abundance
+d Differential gene expression functionally tunes the human
+proteome
+Accession Numbers
+
+Page 1229:
+Impact of Alternative Splicing
+on the Human Proteome
+Yansheng Liu,1,5 Mar Gonza ` lez-Porta,2,5 Sergio Santos,2 Alvis Brazma,2 John C. Marioni,2 Ruedi Aebersold,1,
+*
+Ashok R. Venkitaraman,3,
+* and Vihandha O. Wickramasinghe3,4,6,
+*
+1Department of Biology, Institute of Molecular Systems Biology, ETH Zurich, Zurich, Switzerland
+2European Molecular Biology Laboratory-European Bioinformatics Institute (EMBL-EBI), Hinxton, UK
+3The Medical Research Council Cancer Unit, University of Cambridge, Cambridge CB2 0XZ, UK
+4RNA Biology and Cancer Laboratory, Peter MacCallum Cancer Centre, Melbourne, VIC 3000, Australia
+5These authors contributed equally
+6Lead Contact
+*Correspondence: aebersold@imsb.biol.ethz.ch (R.A.), arv22@mrc-cu.cam.ac.uk (A.R.V.), vi.wickramasinghe@petermac.org (V.O.W.)
+http://dx.doi.org/10.1016/j.celrep.2017.07.025
+SUMMARY
+Alternative splicing is a critical determinant of
+genome complexity and, by implication, is assumed
+to engender proteomic diversity. This notion has not
+been experimentally tested in a targeted, quantitative
+manner. Here, we have developed an integrative
+approach to ask whether perturbations in mRNA
+splicing patterns alter the composition of the prote-
+ome. We integrate RNA sequencing (RNA-seq) (to
+comprehensively report intron retention, differential
+transcript usage, and gene expression) with a data-
+independent acquisition (DIA) method, SWATH-MS
+(sequential window acquisition of all theoretical
+spectra-mass spectrometry), to capture an unbi-
+ased, quantitative snapshot of the impact of
+constitutive and alternative splicing events on the pro-
+teome. Whereas intron retention is accompanied by
+decreased protein abundance, alterations in differen-
+tial transcript usage and gene expression alter protein
+abundance proportionate to transcript levels. Our
+findings illustrate how RNA splicing links isoform
+expression in the human transcriptome with proteo-
+mic diversity and provides a foundation for studying
+perturbations associated with human diseases.
+the contribution of alternative splicing to proteomic composition
+and diversity have focused exclusively on the identification of
+proteins derived from alternatively spliced transcripts in a
+steady-state system (Blakeley et al., 2010; Brosch et al., 2011;
+Ezkurdia et al., 2012; Lander et al., 2001; Leoni et al., 2011; Tress
+et al., 2008; Xing et al., 2011; Zhou et al., 2010). More recent
+studies have incorporated expression data, such as evidence
+from RNA-seq experiments, in the interrogation of proteomic da-
+tasets to reduce mapping noise (Lopez-Casado et al., 2012; Ning
+and Nesvizhskii, 2010; Sheynkman et al., 2013; Tanner et al.,
+2007). However, none of these studies have attempted to quan-
+tify the contribution of alternative splicing to proteomic diversity in
+a systematic manner. Here, we seek to address this fundamental
+biological question by asking whether selective perturbations in
+RNA splicing patterns manifest as changes in the composition
+of the proteome. By using this system, we have established in a
+quantitative manner how changes in splicing of a subset of tran-
+scripts determine differential protein expression.
+INTRODUCTION
+Next-generation RNA sequencing (RNA-seq) has identified alter-
+native splicing of RNA transcripts as a key mechanism that may
+underlie the diversification of proteins encoded in the human
+genome. Such diversification may be essential for biologic
+complexity, because the number of protein-coding human genes
+is lower than was widely predicted before the genome sequence
+was known (Kim et al., 2014; Lander et al., 2001). Transcripts from
+95% of multi-exon human genes are alternatively spliced (Pan
+et al., 2008; Wang et al., 2008). However, the extent to which
+this increased genomic complexity contributes to the generation
+of proteomic diversity is largely unknown. Initial efforts to assess
+RESULTS AND DISCUSSION
+Experimental Strategy to Study Alternative Splicing at
+the Proteomic Level
+We selectively perturbed RNA splicing by depleting the core
+spliceosome U5 small nuclear ribonucleo protein (snRNP)
+component PRPF8 and assessed subsequent transcriptomic
+and proteomic changes by RNA-seq and SWATH-MS (sequen-
+tial window acquisition of all theoretical spectra-mass spec-
+trometry), respectively (Figure 1). This is a compelling system
+because a number of studies have demonstrated the regulatory
+potential of the core spliceosome machinery (Clark et al., 2002;
+Papasaikas et al., 2015; Park et al., 2004; Pleiss et al., 2007;
+Saltzman et al., 2011; Wickramasinghe et al., 2015). Further-
+more, we have extensively experimentally validated this system
+for studying splicing at the mRNA level (Wickramasinghe et al.,
+2015). Thus, using DEXSeq (Anders et al., 2012), we previously
+identified 3,370 transcripts with altered splicing patterns after
+PRPF8 depletion (1,284 with differential exon usage, 1,449
+with intron retention, 637 with both), which constitute only a
+subset of all expressed protein-coding genes (13,216 genes;
+expression threshold = 1 fragments per kilobase million
+
+Page 1230:
+Transcript A Protein Coding
+Transcript B Protein Coding
+Transcript C Protein Coding
+Transcript D Retained Intron
+Selective perturbation
+of RNA splicing
+RNA-sequencing to assess
+transcriptomic changes
+Transcript
+Isoform Abundance
+Control PRPF8
+Depletion
+Differential
+Transcript
+Usage (DTU)
+Intron
+Retention
+Unchanged
+Transcript
+Usage
+Differential
+Gene Expression
+(DGE)
+400-1200 m/z
+SWATH and SRM measurements
+to assess effects at protein level
+SWATH-MS
+Intensity
+m/z
+Retention time
+Validation by targeted SRM
+Q1 Q2 Q3
+Intensity
+Time
+Peptide
+Synthesis
+Integration of RNA-sequencing
+with
+SWATH/SRM MS data
+RNA-seq SWATH/SRM
+Peptide 1
+Transcripts A, B, C
+Peptide 2
+Peptide 3
+Differential transcript usage
+Integration - based on RNA-seq and transcript isoform abundance
+Assignment
+Peptide 1
+Peptide 2
+Peptide 3
+Ambiguous
+Transcript A
+Transcript B
+No Transcript
+Effect of splicing changes on protein levels
+Time
+Figure 1. Framework to Study Contribution
+of Alternative Splicing to Proteomic Compo-
+sition and Diversity
+Experimental and analysis workflow. Top: RNA
+splicing can result in generation of multiple tran-
+scripts as indicated in this hypothetical example,
+including different protein coding transcripts
+(transcripts A–C), as well as transcripts with re-
+tained introns (transcript D). Protein coding exons
+are represented by solid color bars, 50 and 30 un-
+translated regions are represented by white boxes,
+introns are represented by black lines, and a re-
+tained intron is represented by a dark red bar. We
+selectively perturbed RNA splicing by depleting the
+core spliceosome factor PRPF8 and used RNA-seq
+to assess the transcriptomic changes (left) and
+mass spectrometry to assess the effects at the
+protein level (right). PRPF8 depletion can alter the
+relative transcript abundance of the 4 transcripts,
+resulting in differential transcript usage (DTU),
+intron retention, or unchanged transcript usage.
+We have defined DTU to include cases where there
+is a change in transcript relative abundance be-
+tween conditions. Differential gene expression
+(DGE) may also result, where the relative transcript
+abundances are unchanged between conditions,
+but changes in expression at the gene level are
+observed. We used SWATH-MS (sequential win-
+dow acquisition of all theoretical spectra) to assess
+the effects at the protein level, which were vali-
+dated by targeted SRM (selective reaction moni-
+toring). We integrated the complete proteomic
+dataset based on knowledge from our RNA-seq
+experiments in order to guide the peptide
+assignments (bottom panel). Because peptide 2
+maps uniquely to transcript B, it is assigned to
+transcript B. Peptide 1 maps to multiple transcripts
+in the same gene (A and C), but after PRPF8
+depletion, the expression of only one of these
+transcripts is changed. The change affects the
+dominant expressed isoform for this gene (known
+as a major transcript), hence, peptide 1 is assigned
+to transcript A. In contrast, peptide 3 maps simul-
+taneously to multiple differentially used transcripts
+and is therefore considered ambiguous, precluding
+assignment to any transcript.
+[FPKM]) (Wickramasinghe et al., 2015). To enable the quantifica-
+tion of a large fraction of the proteome with high accuracy, we
+used a recently developed data-independent acquisition (DIA)
+method, SWATH mass spectrometry (SWATH-MS), which com-
+bines the comprehensive proteome coverage of conventional
+shotgun proteomics with the high reproducibility and quantita-
+tive accuracy of targeted protein profiling based on SRM (selec-
+tive reaction monitoring) (Gillet et al., 2012; Liu et al., 2013; Ro ¨ st
+et al., 2014). Using SWATH-MS and the OpenSWATH software
+(Ro ¨ st et al., 2014), we were able to identify and quantify 14,695
+peptides (false discovery rate [FDR] 1%) across three biological
+replicates for each condition that uniquely
+map to 2,805 protein-encoding Ensembl
+genes. SWATH-MS yielded high repro-
+ducibility between technical (averaged
+Pearson correlation coefficient R = 0.99) and biological repli-
+cates (averaged R = 0.94) (Figure S1A). Collectively, 1,542 pro-
+teins display at least one peptide with altered protein expression
+levels after PRPF8 depletion (Figure S1B). Functional annotation
+revealed that transcripts with altered splicing patterns and pro-
+teins with altered levels are enriched in the same functional cat-
+egories, namely translation, RNA splicing, mitotic cell cycle, and
+ubiquitination (Figure S1C). In contrast, proteins with unchanged
+levels after PRPF8 depletion are not enriched in these categories
+and are instead enriched for those involved in transcription and
+ribosome biogenesis (Figure S1D). Thus, significant alternative
+
+Page 1231:
+Table 1. Alternative Integration Strategies for Differently Used Transcripts and Peptides Detected by SWATH Mass Spectrometry
+Transcript Set (DTU All No.) Peptide Set (No.) Initial Overlap After Assignment Correlation Coefficient (r) Agreement (%)
+DTU All Transcripts and Uniquely Mapping Peptides
+transcript 30 30 r 0.487 Y, 21 (70)
+transcripts (452) peptides (2,974) peptides 65 65 p value 0.01688 N, 9 (30)
+genes (388) genes (859) genes 30 30
+DTU All Transcripts and All Peptides
+transcript 158 118 r 0.274 Y, 68 (57.63)
+transcripts (452) peptides (14,695) peptides 700 530 p value 0.00378 N, 50 (42.37)
+genes (388) genes (2,805) genes 128 116
+DTU Major Transcripts and Uniquely Mapping Peptides
+transcript 27 27 r 0.498 Y, 20 (74.07)
+transcripts (291) peptides (2,974) peptides 61 61 p value 0.01672 N, 7 (25.93)
+genes (263) genes (859) genes 27 27
+DTU Major Transcripts and All Peptides
+transcript 97 77 r 0.486 Y, 56 (72.73)
+transcripts (291) peptides (14,695) peptides 481 419 p value 1.97E 05 N, 21 (27.27)
+genes (263) genes (2,805) genes 84 75
+splicing events captured at the transcriptome level are function-
+ally mirrored at the proteomic level.
+Establishing Methods to Integrate RNA-Seq with
+SWATH/SRM Mass Spectrometry
+To integrate the transcriptomic and proteomic datasets, we
+focused on identifying differential splicing events at the tran-
+script level, which represents a major computational challenge
+(Kitchen et al., 2014; Low et al., 2013; Vogel and Marcotte,
+2012). Previous analyses, including our own (Figure S1), have
+identified differential splicing events from an exon-centric
+perspective through mapping to the genome using DEXSeq (An-
+ders et al., 2012). However, this approach is limited given that
+differential exon usage provides no information on transcript
+expression levels, which is expected to influence protein expres-
+sion. Furthermore, differentially used exons may map to many
+transcripts from the same gene, making peptide assignment
+difficult. To overcome these limitations, we explored a tran-
+script-centric approach, which considers transcripts as whole
+units, to facilitate the integration with the proteomic dataset.
+We first estimated transcript expression levels with MMSEQ
+(Turro et al., 2011) and then used its companion tool MMDIFF
+(Turro et al., 2014) to identify both differentially expressed genes
+and differentially used transcripts. Genes with differential tran-
+script usage (DTU) are defined as cases where there is a change
+in the transcript relative abundances between conditions (see
+pie-charts in Figure 1, left panel). We identified, at high confi-
+dence, 388 genes that display DTU and 2,021 genes that display
+differential gene expression (DGE) following depletion of PRPF8
+(Tables 1 and S3). Transcript levels of differently used transcripts
+were validated by RT-PCR (see Figure 5 and Wickramasinghe
+et al., 2015 for differently used mitotic transcripts) and genes
+with differential expression were validated by qRT-PCR (see
+Figure S5C).
+We first considered the set of peptides that map uniquely to
+alternatively spliced transcripts involved in DTU events, defined
+from the mRNA data. In other words, peptide expression levels
+can be directly and exclusively associated with the transcripts
+of interest. Using this approach, we evaluated the impact
+at the protein level of the changes in splicing detected by
+RNA-seq experiments, based on the correlation between fold
+changes in transcript and peptide expression after PRPF8
+depletion. RNA-seq fold changes were calculated from the tran-
+script-level expression estimates obtained from MMSEQ. For
+each transcript, the fold change represents the median transcript
+expression in PRPF8-depleted versus control small interfering
+RNA (siRNA)-treated samples across 3 biological replicates.
+Peptide fold changes for each transcript were calculated by first
+adding up the intensities of all the peptides that mapped to that
+transcript in each given biological replicate and then dividing the
+median sum for PRPF8 depletion versus controls (hence result-
+ing in one fold change per transcript). We observe a Spearman’s
+correlation coefficient of 0.49 and a Pearson correlation
+coefficient of 0.51 when comparing fold changes in RNA and
+protein expression (65 peptides from 30 genes; p value =
+0.0169, Spearman; p value = 0.0102, Pearson; correlation test)
+(Figure 2A; Table 1). Use of an alternative strategy to determine
+peptide fold changes for each transcript, whereby the fold
+change for PRPF8 depletion versus controls was determined
+individually for each peptide to obtain the median fold change
+of all peptides that mapped to that transcript, yielded similar re-
+sults (see Table S2). However, uniquely mapping peptides repre-
+sent a minority of cases (2,974 out of 14,665 peptides detected
+by SWATH-MS), because many peptides, due to their length
+yielded from using routine trypsin digestion and the detection
+range of biological mass spectrometry, are shared between tran-
+script isoforms.
+Integration of Complete SWATH Proteomic Dataset
+To integrate the complete proteomic dataset, we devised a strat-
+egy that takes advantage not only of the information from pep-
+tides that map uniquely to one transcript isoform, but also from
+
+Page 1232:
+See image, Figure 2
+
+Page 1233:
+those that map to several transcripts of the same gene (Fig-
+ure 2B). To do this, we used information from our RNA-seq ex-
+periments to guide the peptide assignments. More specifically,
+for genes with multiple isoforms, many are expressed at an
+extremely low level in comparison to the most abundant isoforms
+(Gonza ` lez-Porta et al., 2013) (Figure 3A). Such a low level of
+mRNA expression is unlikely to manifest itself as expressed pro-
+tein product within the dynamic range of the mass spectrometric
+method used that is 4.4 orders of magnitude (Figure 3A).
+Consequently, for each gene, we considered only the most
+highly expressed transcript in each condition (major transcript)
+for peptide assignment, discarding cases where DTU did not
+arise in one of these. Using this criterion, we identified 263 genes
+whose major transcript displayed DTU (Table 1). In some cases,
+the identity of the major transcript differs between conditions
+(as discussed below), whereupon we determined separately
+for each major transcript whether there was evidence of differen-
+tial usage following depletion of PRPF8. Subsequently, we used
+the regions that distinguished these two transcripts to uniquely
+allocate peptides (Figure 2B).
+This approach yields peptide fold change information for
+419 peptides corresponding to 75 genes that display DTU.
+Comparing mRNA fold changes with protein expression using
+this dataset yields a Spearman’s correlation coefficient of 0.49
+and a Pearson correlation coefficient of 0.37 (Figure 2B; p value =
+1.97 3 E 05, Spearman; p value = 0.0015, Pearson; correlation
+test) (Table 1). Importantly, this correlation coefficient is broadly
+similar to that obtained with uniquely mapping peptides across
+all isoforms, but using a significantly larger dataset (419 peptides
+from 75 genes versus 65 peptides from 30 genes). Nevertheless,
+most weakly expressed major transcripts displaying DTU are
+undetectable as expressed protein product within the dynamic
+range of mass spectrometry (Figure 3B). When we focus on ma-
+jor transcripts and uniquely mapping peptides, we observe a
+Spearman’s correlation coefficient of 0.50 and a Pearson corre-
+lation coefficient of 0.52 (61 peptides from 27 genes; p value =
+0.0167, Spearman; p value = 0.0117, Pearson; correlation test)
+(Figure S2). In contrast, use of an alternative integration strategy
+that assigns peptides to all differently used transcripts regard-
+less of their expression levels resulted in an increase in the data-
+set size (530 peptides corresponding to 116 genes that display
+DTU) but a sharp decrease in Spearman’s correlation coefficient
+to 0.27 and to 0.21 for Pearson (p value = 0.0378, Spearman;
+p value = 0.0260, Pearson; correlation test) (Figure 2C; Table 1).
+This result suggests that the inclusion of minor transcripts with
+low expression levels increases noise at both the mRNA and pro-
+tein level, making reliable peptide assignment difficult (Figure 3).
+Consequently, this indicates that usable information can be
+obtained from peptides that map to more than one transcript in
+the same gene only if information on transcript abundance is
+considered. Taken together, these results suggest that transcript
+expression levels play a dominant role in regulating protein abun-
+dance, which supports the idea that differential splicing events
+in minor transcripts correspond to subtle changes that do not
+have a strong impact on the overall proteome, whatever their
+functional outcome.
+Validation Using Selective Reaction Monitoring Mass
+Spectrometry
+To validate our findings using a more sensitive mass spectro-
+metric approach, we performed selective reaction monitoring
+(SRM) on control siRNA-treated and PRPF8-depleted samples
+(Figures S3A and S3B). To increase the quantitative precision,
+we spiked heavy isotope-labeled peptide standards for SRM
+measurement into the sample. SRM has a higher sensitivity but
+a much lower analyte throughput than SWATH; hence, we were
+only able to determine peptide fold change information for 53 tar-
+geted peptides corresponding to 15 genes whose major tran-
+scripts display DTU. Comparing mRNA fold changes with protein
+expression using this dataset yields a Spearman’s correlation
+coefficient of 0.62 and a Pearson correlation coefficient of 0.59
+(p value = 0.0116, Spearman; p value = 0.01663, Pearson; corre-
+lation test) (Figure 4B; Table S1). When considering only peptides
+that map uniquely to transcripts involved in DTU events, we
+observe an increased correlation coefficient of 0.78 (0.71 for
+Pearson) (35 peptides from 13 genes; p value = 0.0017,
+Spearman; p value = 0.0043, Pearson; correlation test) (Figure 4A;
+Table S1) and 0.73 (0.70 for Pearson) when focusing on major
+transcripts and uniquely mapping peptides (33 peptides from
+12 genes; p value = 0.0063, Spearman; p value = 0.00794,
+Pearson; correlation test) (Figure S3C; Table S1). Collectively,
+our findings demonstrate that changes in isoform usage across
+the human transcriptome manifest at the proteome level.
+Biological Impact of Functional mRNA Isoforms through
+Proteome Diversity
+Alternative splicing has the potential to vastly increase the
+diversity of proteins encoded by the human genome. To assess
+Figure 2. Changes in Isoform Usage Manifest Themselves at the Proteome Level
+(A) Uniquely mapping peptides and SWATH-MS. Schematic indicating peptide to transcript mapping for uniquely mapping peptides is shown on left. Scatterplot
+comparing changes in expression of differently used transcripts (DTU) (log2 fold change RNA-seq) to changes in expression of the peptides that uniquely map to
+them (log2 fold change SWATH-MS) after PRPF8 depletion is shown on right. Spearman and Pearson correlation coefficients and associated p values are shown
+in top left corner.
+(B) Major transcripts and SWATH-MS. Schematic indicating peptide to transcript mapping for major transcripts is shown on left. Similar scatterplot is shown on
+right for transcripts whose most highly expressed isoform (major transcript) changes in expression after PRPF8 depletion with corresponding peptide evidence.
+(C) Use of an alternative integration strategy for peptide assignment where information about transcript expression levels was not considered increases dataset
+size but reduces correlation coefficient. Specifically, if a peptide maps to multiple transcripts in the same gene, but the expression of only one of these transcripts
+was changed after PRPF8 depletion, then this peptide was assigned to that particular transcript regardless of its expression level. In contrast, peptides that map
+simultaneously to multiple differentially used transcripts were considered ambiguous and were not used for further analysis. A scatterplot comparing changes in
+expression of differently used transcripts (DTU) (log2 fold change RNA-seq) to changes in expression of their corresponding peptides (log2 fold change SWATH-
+MS) after PRPF8 depletion is shown.
+
+Page 1234:
+See image 2, Figure 3
+
+Page 1235:
+A B
+Figure 4. Validation Using Selective Reaction Monitoring Mass Spectrometry (SRM)
+(A) Uniquely mapping peptides and SRM. Scatterplot comparing changes in expression of differently used transcripts (DTU) (log2 fold change RNA-seq) to
+changes in expression of the peptides that uniquely map to them (log2 fold change SRM-MS) after PRPF8 depletion. Peptide expression information was obtained
+using SRM.
+(B) Major transcripts and SRM. Similar scatterplot is shown for transcripts whose most highly expressed isoform (major transcript) changes in expression after
+PRPF8 depletion with corresponding peptide evidence.
+See also Figure S3C and Table S2.
+whether the changes in alternative splicing that we observe at
+the protein level may have a functional impact on cellular biology,
+we focused on extreme examples of alternative splicing, where
+the identity of major transcripts changes across conditions.
+This is termed a switch event (Gonza ` lez-Porta et al., 2013) and
+two examples that result in changes in protein isoform expres-
+sion as determined by SWATH and SRM are shown in Figures 5
+and S4 (LAP2 and hnRNPK). We focused on lamin-associated
+polypeptide (LAP2), also known as thymopoietin, because its
+various isoforms have been functionally characterized in detail
+(Dechat et al., 1998; Somech et al., 2005). LAP2 undergoes a
+switch event after PRPF8 depletion, whereby the dominant iso-
+form changes from LAP2b to LAP2a, whose N-terminal region
+of 187 amino acids (encoded by exons 1–3) is shared with
+LAP2b (Figures 5A and S5A). Changes in protein expression of
+each isoform, consistent with the change observed at the
+mRNA level, were determined by SWATH-MS and validated by
+SRM. Thus, one peptide shared by both isoforms did not change
+in expression after PRPF8 depletion, whereas peptides uniquely
+mapping to LAP2b decreased and those to LAP2a increased
+respectively (Figures 5B and S5B). These changes were
+confirmed at the RNA (Figure 5C) and protein (Figure 5D) levels
+using probes and antibodies that recognize each specific
+isoform.
+Both isoforms have different cellular locations and functions:
+LAP2b localizes to the nuclear lamina and represses transcrip-
+tion of p53 and nuclear factor kB (NF-kB) target genes (Dechat
+et al., 1998; Somech et al., 2005), while LAP2a is localized
+throughout the nuclear interior and is implicated in the structural
+organization of the nucleus (Dechat et al., 1998). In unperturbed
+cells, the majority of LAP2 protein localizes to the nuclear lamina,
+corresponding to the LAP2b isoform (Figure 5E). Following
+PRPF8 depletion, this staining pattern is reversed: less LAP2
+protein is observed at the nuclear lamina, and more is observed
+in the nuclear interior, corresponding to increased levels of the
+LAP2a isoform (Figure 5E). Consistent with a reduction in
+LAP2b levels, we observe a de-repression of direct p53 and
+NF-kB transcriptional targets after PRPF8 depletion (Figure S5C),
+Figure 3. Peptides Encoded by Major Transcripts Are More Frequently Detected by SWATH-MS
+(A) Expression levels (log10 FPKMs [fragments per kilobase of transcript per million mapped reads]) of major and minor transcripts with or without peptide ev-
+idence are indicated for Control and PRPF8-depleted samples. Only uniquely mapping peptides were used for this analysis and one biological replicate for each
+condition is shown.
+(B) Lowly expressed major transcripts displaying DTU are not detectable as expressed protein product within dynamic range of SWATH mass spectrometry.
+Expression levels (log10 FPKMs) for major transcripts displaying D
+
+Page 1236:
+See image 3, Figure 5
+
+Page 1237:
+A B Figure 6. Intron Retention and Differential
+Gene Expression Functionally Tune the Hu-
+man Proteome
+(A) Intron retention reduces protein levels. Boxplot
+representing the ratio of protein expression (PRPF8
+depletion/Control) is shown for retained introns
+(n = 270) and non-retained introns (n = 473) with
+peptide evidence. p value is indicated (Wilcoxon
+test).
+(B) Alterations in gene expression alter protein
+abundance proportionally to transcript levels. Scat-
+terplot comparing changes in expression of differ-
+entially expressed genes (DGE) (log2 fold change
+RNA-seq) to changes in expression of the peptides
+that map to them (log2 fold change SWATH-MS) after
+PRPF8 depletion. Spearman’s correlation coeffi-
+cient is shown in top left corner. Differently expressed
+genes whose corresponding peptides change
+significantly in expression (adjusted p value < 0.1,
+t test, Holm method) are indicated in red and asso-
+ciated correlation coefficient is also shown in red.
+See also Figure S6 and Table S3.
+highlighting the potential biological impact of functionally rele-
+vant mRNA isoforms by the quantitative modulation of their
+respective protein isoforms.
+Intron Retention Reduces Protein Levels
+Intron retention is a specific form of alternative splicing that is
+increasingly regarded as a regulatory event that can control
+gene expression (Kalyna et al., 2012; Wong et al., 2013; Yap
+et al., 2012). We therefore assessed the impact of intron reten-
+tion on the composition of the proteome. Recent findings have
+suggested that intron retention affects transcripts from as
+many as 75% of multi-exon genes (Braunschweig et al., 2014).
+Transcripts with retained introns may not be translated because
+they are retained in the nucleus as they are not competent for
+export or may contain a premature termination codon (PTC)
+that results in their degradation by the nonsense-mediated
+decay (NMD) pathway. Consistent with this hypothesis, intron
+retention leading to NMD has a significant impact on transcript
+levels (Braunschweig et al., 2014). However, the effect of re-
+tained introns on protein expression has not been examined to
+date using a systematic approach covering the transcriptome.
+Following PRPF8 depletion, we see an increase in the expression
+levels of intronic reads throughout the genome (p value < 2.2 3
+10 16) (Wickramasinghe et al., 2015). We obtained peptide evi-
+dence for 270 genes that display retained introns (identified
+using DEXSeq [Anders et al., 2012], see the Experimental Pro-
+cedures) following PRPF8 depletion and asked whether protein
+expression is downregulated in these genes compared to those
+without intron retention. We find that the expression of their en-
+coded proteins is reduced in comparison to those that do not
+display retained introns (n = 473, p value = 0.0041, Wilcoxon
+test) (Figure 6A). Furthermore, the proportion of downregulated
+proteins is higher in the group of genes with retained introns
+compared to those without intron retention (161/270 versus
+231/473; p value = 0.0048, odds ratio: 1.547).
+The relative abundance of protein-coding transcripts for each
+gene also has a significant effect on protein expression. Indeed,
+when considering genes with at least one transcript displaying a
+retained intron biotype, the encoded proteins that are downregu-
+lated after PRPF8 depletion have a higher relative abundance of
+transcripts that are not protein-coding (i.e., display intron reten-
+tion) for each gene in comparison to those whose proteins are
+upregulated (p value = 0.0098) (Figure S6A). One example is
+shown in Figures S4C and S4D, where the dominant protein-
+coding isoform downregulated after PRPF8 depletion is re-
+placed by an isoform with a retained intron, resulting in a
+decrease in protein expression (according to 5 peptides de-
+tected by SWATH-MS with average PRPF8 depletion/control
+Figure 5. Biological Impact of Functional mRNA Isoforms
+(A) Transcript representation of LAP2 isoforms and starplots of transcript relative abundance in control siRNA-treated and PRPF8-depleted cells. One biological
+replicate is shown.
+(B) LAP2 switch event with corresponding peptide evidence. Column plots show fold change in expression of transcripts (left two columns) and peptides (right
+columns) after PRPF8 depletion. A negative fold change is represented in yellow (LAP2b), and a positive fold change in turquoise (LAP2a). Each peptide detected
+by SWATH or SRM is shown individually, and the region of the transcript to which it maps is represented in (A) by different colored ovals.
+(C and D) Changes in LAP2 isoform expression are confirmed at the RNA (C) and protein (D) levels using probes and antibodies that recognize each specific
+isoform.
+(E) LAP2 isoform localization is altered after PRPF8 depletion. Immunofluorescence of LAP2b and LAP2a isoforms is shown in control siRNA-treated and PRPF8-
+depleted Cal51 cells using antibodies that recognize each specific isoform and both isoforms respectively (scale bar, 5 mm). Scanning analysis of LAP2 isoform
+intensity is also shown with the scanning axes indicated by white lines. Pairs of nuclei of same scan width as determined by DAPI were used for scanning using
+ImageJ (NIH). Experiments in (C)–(E)
+
+Page 1238:
+fold change of 0.575, p value = 0.018). Interestingly, for some
+genes with intron retention after PRPF8 depletion, their corre-
+sponding protein expression levels are unchanged or even
+increased. This suggests a complex model whereby compensa-
+tion mechanisms may be at play. However, the mere detection of
+a transcript with a retained intron bio-type by RNA-seq may not
+affect the levels of the protein encoded by that gene, unless it is
+expressed at a robust level. Indeed, for those proteins that are
+upregulated after PRPF8 depletion, the median protein coding
+transcript relative abundance is >0.9 (Figure S6). In other words,
+<10% of the transcripts that make up that gene display intron
+retention, which may explain why these transcripts have no
+effect on protein level. Collectively, these results suggest that
+intron retention functionally tunes the human proteome as well
+as the transcriptome.
+Alterations in Gene Expression Alter Protein Abundance
+Proportionally to Transcript Levels
+Protein abundance is a direct determinant of cellular function
+and is heavily influenced by transcript levels. However, the quan-
+titative contribution of mRNA abundance to protein abundance
+remains controversial (Cheng et al., 2016; Jovanovic et al.,
+2015; Kristensen et al., 2013; Li et al., 2014; Liu et al., 2016; Ro-
+bles et al., 2014; Schwanha ¨ usser et al., 2011; Vogel et al., 2010;
+Vogel and Marcotte, 2012). Given that steady-state mRNA and
+protein abundance are controlled by a number of post-transcrip-
+tional and translational regulatory processes (Vogel and Mar-
+cotte, 2012), establishing a correlation between the transcrip-
+tome and the proteome is not straightforward. A number of
+studies have used advances in next-generation sequencing
+and proteomics to examine the correlation between mRNA and
+protein abundances under steady-state conditions. Generally,
+the results have indicated that although there is a strong correla-
+tion between mRNA and protein abundance, a substantial pro-
+portion of the variation in protein abundance cannot be attrib-
+uted to mRNA expression alone (Fu et al., 2009; Ghazalpour
+et al., 2011; Lundberg et al., 2010; Nagaraj et al., 2011; Schwan-
+ha ¨ usser et al., 2011). This may be due to technical or experi-
+mental noise, along with limitations of the timescale in the exper-
+imental design and data modeling approaches (Liu et al., 2016).
+In contrast, more recent studies using advanced technical mea-
+surements in both steady-state and perturbed conditions have
+suggested that changes in mRNA abundance play a dominant
+role in determining the majority of dynamic changes in protein
+levels (Jovanovic et al., 2015; Robles et al., 2014), although
+this may depend on the respective contributions of mRNA and
+protein level regulation to the biological system being studied
+(Cheng et al., 2016).
+We determined the contribution of changes in mRNA abun-
+dance to protein abundance using our biological system of per-
+turbed RNA splicing. We observe 2,021 genes that are differen-
+tially expressed (DGE) after PRPF8 depletion and obtained fold
+change information for 3,057 peptides corresponding to 572
+genes that display DGE (Table S3). We observed a Spearman’s
+correlation coefficient of 0.63 when comparing RNA and protein
+fold changes in expression (Figure 6B; Table S3) that increases
+to 0.79 when focusing on peptides with a significant fold change
+(adjusted p value < 0.1, t test, Holm method) (Figure 6B; Table
+1238 Cell Reports 20, 1229–1241, August 1, 2017
+S3). A correlation coefficient of 0.58 (increasing to 0.76 when
+considering peptides with significant fold change, adjusted
+p value <0.1, t test, Holm method) is observed when focusing
+on uniquely mapping peptides (Figure S6B). Importantly, when
+we focus on the genes that do not display DGE, we observe a
+correlation coefficient of 0.29 when comparing RNA and protein
+fold changes in expression (Figures S6C and S6D), suggesting
+that changes in gene expression are driving the changes in pro-
+tein expression. Taken together, these results suggest that in a
+system with perturbed alternative splicing, a significant propor-
+tion of the variation in protein abundance can be chiefly attrib-
+uted to changes in mRNA levels.
+In summary, our results illustrate how RNA splicing links iso-
+form expression in the human transcriptome with proteomic di-
+versity. We further show that alternative splicing events causing
+intron retention are accompanied by decreased protein abun-
+dance, whereas alterations in differential transcript usage and
+gene expression alter protein abundance proportionally to tran-
+script levels. The fraction of the whole proteome mass of a hu-
+man cell represented by the number of proteins identified in
+our study is very high (>99.5%) (Beck et al., 2011), suggesting
+that the observed events are likely to be representative for the
+proteome.
+Our integrative analysis using a perturbed system suggests
+that alternative splicing events significantly contribute to both
+proteomic composition and diversity in humans. While a recent
+study that used ribosome occupancy as an indicator of transla-
+tion output and not protein levels, supports our conclusions
+(Weatheritt et al., 2016), the contribution of alternative splicing
+to proteomic complexity remains divisive (Blencowe, 2017;
+Tress et al., 2017a, 2017b). The increase in correlation coefficient
+between mRNA and protein levels that we observe from SWATH
+to SRM suggests that a significant proportion of the protein vari-
+ance from our perturbed system can be explained by differences
+in isoform usage. Critically, this depends on both the sensitivity
+of the mass spectrometric method used and the identification
+of high confidence alternative splicing events at the transcript
+level.
+The methods we have developed to integrate RNA-seq and
+quantitative SWATH and SRM mass spectrometry data to study
+splicing demonstrate that usable information can be obtained
+from peptides that map to more than one transcript in the
+same gene once information on transcript abundance is consid-
+ered. They provide a foundation for future studies to examine the
+proteome-wide effects of altered RNA splicing associated with
+human diseases (Kurtovic-Kozaric et al., 2015; Quesada et al.,
+2011; Tanackovic et al., 2011; Yoshida et al., 2011).
+EXPERIMENTAL PROCEDURES
+Analysis of RNA-Seq Data
+The transcriptome of control siRNA-treated and PRPF8-depleted Cal51 cells
+was sequenced on an Illumina HiSeq2000 platform using 100 bp paired-end
+reads with poly(A)+RNA isolated from 3 and 4 independent experiments,
+respectively, as previously described (Wickramasinghe et al., 2015). Raw
+reads were directly mapped to the transcriptome with Bowtie v0.12.7 (Lang-
+mead et al., 2009), using Ensembl v66 as a reference (Flicek et al., 2012).
+Following the estimation of transcript expression levels with MMSEQ v1.0.7
+(Turro et al., 2011), its companion tool MMDIFF (Turro et al., 2014) was used
+
+Page 1239 (technical informatioin):
+to identify both differentially expressed genes and differentially used
+transcripts as described in more detail in the Supplemental Experimental
+Procedures.
+Protein Extraction and In-Solution Digestion
+The cell pellets from three independent depletion experiments (control siRNA
+and PRPF8-depleted) were lysed on ice by using a lysis buffer containing 8 M
+urea (EuroBio), 40 mM Tris-base (Sigma-Aldrich), 10 mM DTT (AppliChem),
+and complete protease inhibitor cocktail (Roche) as described in more detail
+in the Supplemental Experimental Procedures.
+Shotgun and SWATH-MS Measurement
+The peptides digested from Cal51 lysate were all measured on an AB Sciex
+5600 TripleTOF mass spectrometer operated in DDA mode. The same liquid
+chromatography-tandem mass spectrometry (LC-MS/MS) system used for
+DDA measurements was also used for SWATH analysis (Collins et al., 2013;
+Gillet et al., 2012; Liu et al., 2013) and is described in more detail in the Supple-
+mental Experimental Procedures.
+Assignment of Peptides to Transcripts
+An initial set of 16,779 peptides was detected across biological replicates
+for each condition (control siRNA and PRPF8-depleted samples) using
+SWATH-MS and mapped against all the protein coding transcripts annotated
+in Ensembl v66, including those with a nonsense-mediated decay biotype.
+Removal of peptides that mapped to more than one gene led to a set of
+14,695 peptides (corresponding to 2,805 genes), which was used for down-
+stream analysis. Peptides were assigned to specific transcripts as outlined
+in Figure 1. Peptides that map uniquely to each transcript represented a minor-
+ity of events (2,974 peptides mapping to 859 genes). Peptides that map ubiq-
+uitously to several transcripts of the same gene were assigned based on
+knowledge from the RNA-seq experiments using the following criteria. Two
+alternative peptide assignment strategies were considered. One strategy
+incorporated information on transcript isoform abundance for each gene into
+our analysis, whereby only peptides that map to major transcripts were
+considered. Major transcripts are the dominant expressed isoform for each
+gene and those identified as major in either control siRNA-treated or PRPF8-
+depleted samples were used specifically for peptide assignment. Additionally,
+we considered an alternative assignment strategy where information about
+transcript expression levels was not considered. Specifically, if a peptide
+maps to multiple transcripts in the same gene, but the expression of only
+one of these transcripts was changed after PRPF8 depletion, then this peptide
+was assigned to that particular transcript regardless of its expression level. In
+contrast, peptides that map simultaneously to multiple differentially used tran-
+scripts were considered ambiguous and were not used for further analysis.
+Integration of Transcriptomic and Proteomic Data
+To integrate transcriptomic and proteomic data, fold changes in transcript
+and peptide expression after PRPF8 depletion were obtained from RNA-seq
+and SWATH or SRM mass spectrometry experiments, respectively. RNA-
+seq fold changes were calculated from the transcript-level expression esti-
+mates obtained from MMSEQ as described above. For each transcript, the
+fold change represents the median transcript expression in PRPF8-depleted
+versus control siRNA-treated samples.
+Raw peptide intensities were first quantile-normalized in order to enable
+comparison across samples. For each peptide, the observed intensities
+across the biological replicates in each condition were summarized by using
+the median, and a fold change was obtained by dividing the value obtained
+for PRPF8-depleted and control siRNA-treated samples. Peptide fold changes
+for each transcript were calculated by first adding up the intensities of all
+the peptides that mapped to that transcript in each given biological replicate
+and then dividing the median value of the summed peptide signals for
+PRPF8 depletion versus controls (hence resulting in one fold change per tran-
+script). The same analysis was used for both SWATH and SRM datasets. Use
+of an alternative strategy to determine peptide fold changes for each tran-
+script, whereby the fold change for PRPF8 depletion versus controls was
+determined individually for each peptide to obtain the median fold change of
+all peptides that mapped to that transcript, yielded similar results (see Table
+S2). The fold changes derived from these two technologies were integrated
+as described in Figure 1. Spearman correlation was used to evaluate the rela-
+tionship between transcript and peptide fold changes, as previously sug-
+gested (Maier et al., 2009). We also used Pearson correlation as a comparison.
+ACCESSION NUMBERS
+The accession number for the raw data of mass spectrometry measurements
+(SWATH-MS and shotgun) together with the input spectral library and
+OpenSWATH results reported in this paper is ProteomeXchange Consortium
+(http://proteomecentral.proteomexchange.org): PXD003278. The accession
+number for the RNA sequencing data reported in this paper is ArrayExpress:
+E-MTAB-3021.
+SUPPLEMENTAL INFORMATION
+Supplemental Information includes Supplemental Experimental Procedures,
+six figures, and three tables and can be found with this article online at
+http://dx.doi.org/10.1016/j.celrep.2017.07.025.
+AUTHOR CONTRIBUTIONS
+Y.L. performed all mass-spectrometry experiments and analyzed data with
+M.G.-P. and V.O.W. M.G.-P. developed informatics pipelines and analyzed
+data with S.S., Y.L., and V.O.W. J.C.M. contributed to the method develop-
+ment, wrote the paper, and supervised M.G.-P. with A.B. A.R.V. and R.A. su-
+pervised the study, analyzed data, and wrote the paper. V.O.W. conceived the
+study, performed, and analyzed experiments, and wrote the paper.
+ACKNOWLEDGMENTS
+We thank James Hadfield and members of the sequencing facility (Cambridge
+Institute) for RNA sequencing. We gratefully acknowledge funding from the
+EMBL (to M.G.-P. and J.C.M.), the NIH (U01CA152813 to Y.S.L. and R.A.), the
+ERC (AdG-670821 [Proteomics 4D] to R.A.), the Swiss National Science Foun-
+dation (31003A_166435 to R.A.), SystemsX.ch through project PhosphonetX-
+PPM (to R.A.), the UK Medical Research Council (G1001521, G1001522, and
+4050551988 to A.R.V.), and the NHMRC (1127745 to V.O.W.). V.O.W. is sup-
+ported by an innovation fellowship from VESKI.
+Received: April 21, 2017
+Revised: June 2, 2017
+Accepted: July 12, 2017
+Published: August 1, 2017
+REFERENCES
+Anders, S., Reyes, A., and Huber, W. (2012). Detecting differential usage of
+exons from RNA-seq data. Genome Res. 22, 2008–2017.
+Beck, M., Schmidt, A., Malmstroem, J., Claassen, M., Ori, A., Szymborska, A.,
+Herzog, F., Rinner, O., Ellenberg, J., and Aebersold, R. (2011). The quantitative
+proteome of a human cell line. Mol. Syst. Biol. 7, 549.
+Blakeley, P., Siepen, J.A., Lawless, C., and Hubbard, S.J. (2010). Investigating
+protein isoforms via proteomics: a feasibility study. Proteomics 10, 1127–
+1140.
+Blencowe, B.J. (2017). The relationship between alternative splicing and pro-
+teomic complexity. Trends Biochem. Sci. 42, 407–408.
+Braunschweig, U., Barbosa-Morais, N.L., Pan, Q., Nachman, E.N., Alipanahi,
+B., Gonatopoulos-Pournatzis, T., Frey, B., Irimia, M., and Blencowe, B.J.
+(2014). Widespread intron retention in mammals functionally tunes transcrip-
+tomes. Genome Res. 24, 1774–1786.
+Brosch, M., Saunders, G.I., Frankish, A., Collins, M.O., Yu, L., Wright, J., Ver-
+straten, R., Adams, D.J., Harrow, J., Choudhary, J.S., and Hubbard, T. (2011).
+Shotgun proteomics aids discovery of novel protein-coding genes, alternative
+
+
+
+The images are in the root folder

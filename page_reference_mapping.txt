@@ -1,0 +1,167 @@
+CORRECT PAGE NUMBER MAPPINGS FOR ALTERNATIVE SPLICING REPORT
+================================================================
+
+This document contains the correct page numbers for citations in the alternative splicing report.
+The original report had some incorrect page numbers that need to be corrected.
+
+FLOREA (2006) - "Bioinformatics of alternative splicing and its regulation"
+==========================================================================
+
+Page 55:
+- Title: Bioinformatics of alternative splicing and its regulation
+- Author: Liliana Florea
+- Abstract and Introduction section
+- Content: Discovery that many genes can produce multiple mRNA and protein isoforms, alternative splicing as regulatory mechanism, estimated 60% of human genes undergo alternative splicing
+
+Page 56:
+- Figure 1: Types of alternative splicing events (exon inclusion/exclusion, alternative 3' and 5' exon ends, intron retention, alternative UTRs)
+- Discussion of gene annotation landscape changes
+- Content about splicing regulation being more versatile than transcriptional regulation
+
+Page 57:
+- Section: IDENTIFICATION OF SPLICE VARIANTS
+- Bioinformatics approaches for identifying splice variants
+- Sequence data sources: dbEST, RefSeq, MGC, UniProt
+- Alignment tools: EST_GENOME, Sim4, Spidey, GeneSeqer, Blat, ESTmapper, MGAlignIt, GMAP
+
+Page 58:
+- Figure 2: Bioinformatics methods for identifying alternative splicing
+- Section: BIOINFORMATICS METHODS
+- Gene indices methodology
+- Description of transcript-oriented collections of EST and mRNA sequences
+
+Page 59:
+- Continued discussion of gene indices
+- Over-clustering and under-clustering problems
+- Genome-based clustering and assembly approaches
+
+Page 60:
+- Splice graph concept introduction
+- Splice graph as directed acyclic graph model
+- AIR annotation pipeline and ECgene system
+- Microarray data for identifying splice variations (Affymetrix chips)
+
+Page 61:
+- Resources for alternative splicing
+- Databases: PALSdb, EASED, ASAP, AltExtron, AltSplice, SpliceInfo, AsMamDb
+- Software pipelines: ClusterMerge, AIR, PASA, ASG, ASmodeler
+- TIGR Gene Indices and NCBI UniGene
+
+Page 62:
+- Section: HURDLES IN ALTERNATIVE SPLICING ANNOTATION
+- Four main challenges: EST quality, alignment accuracy, limitations in models/data, complexity of biological processes
+- Section: ALTERNATIVE SPLICING REGULATION
+- Pre-mRNA splicing by spliceosome
+- Cis-regulatory elements: ESEs, ISEs, ESS, ISS
+- SR factors and hnRNP proteins
+
+Page 63:
+- Figure 3: Mechanisms of alternative splicing regulation
+- Consensus sequences for regulatory elements
+- Section: BIOINFORMATICS METHODS FOR IDENTIFYING SPLICING REGULATORY ELEMENTS
+
+Page 64:
+- Table 2: Consensus motifs for SR protein dependent enhancers
+- Position weight matrices (PWMs)
+- Statistical over-representation of k-mers
+- Methods by Fairbrother et al. and Zhang and Chasin
+
+Page 65:
+- Figure 4: Bioinformatics representations of splicing regulatory motifs
+- Motif discovery methods (MEME, Gibbs sampling)
+- Comparative studies between human and mouse
+
+Page 66:
+- Continued comparative studies
+- Resources for alternative splicing regulation: ESEfinder, RESCUE-ESE, SpliceInfo, AEDB
+- Key Points section
+- Conclusions section
+
+Page 67:
+- References section
+
+LIU ET AL. (2017) - "Impact of Alternative Splicing on the Human Proteome"
+=========================================================================
+
+Page 1228:
+- Graphical Abstract
+- Authors list
+- Highlights section
+- Accession Numbers
+
+Page 1229:
+- Title: Impact of Alternative Splicing on the Human Proteome
+- Authors and affiliations
+- Abstract
+- Introduction section
+- Experimental strategy using PRPF8 depletion
+
+Page 1230:
+- Figure 1: Framework to Study Contribution of Alternative Splicing to Proteomic Composition and Diversity
+- Experimental workflow description
+- SWATH-MS methodology and results (14,695 peptides, 2,805 genes)
+- High reproducibility between replicates
+
+Page 1231:
+- Table 1: Alternative Integration Strategies for Differently Used Transcripts and Peptides
+- Methods for integrating RNA-seq with SWATH/SRM mass spectrometry
+- Transcript-centric approach using MMSEQ and MMDIFF
+- 388 genes with DTU, 2,021 genes with DGE
+
+Page 1232:
+- Figure 2: Changes in Isoform Usage Manifest Themselves at the Proteome Level
+- Details about integration of complete SWATH proteomic dataset
+
+Page 1233:
+- Integration strategy using major transcripts
+- Correlation coefficients for different approaches
+- Discussion of usable information from peptides mapping to multiple transcripts
+
+Page 1234:
+- Figure 3: Peptides Encoded by Major Transcripts Are More Frequently Detected by SWATH-MS
+- Validation using SRM mass spectrometry
+
+Page 1235:
+- Figure 4: Validation Using Selective Reaction Monitoring Mass Spectrometry
+- Biological impact of functional mRNA isoforms
+- LAP2 switch event case study
+- Different cellular locations and functions of LAP2a vs LAP2b
+
+Page 1236:
+- Figure 5: Biological Impact of Functional mRNA Isoforms
+- LAP2 isoform analysis details
+
+Page 1237:
+- Figure 6: Intron Retention and Differential Gene Expression
+- Intron retention reduces protein levels
+- 270 genes with retained introns showing reduced protein expression
+- p value = 0.0041 for protein reduction in intron retention cases
+
+Page 1238:
+- Differential gene expression effects on protein abundance
+- 2,021 differentially expressed genes
+- Spearman correlation coefficient of 0.63 for RNA-protein correlation
+- Discussion of mRNA abundance contribution to protein abundance
+- Experimental procedures section begins
+
+Page 1239:
+- Technical information: Experimental Procedures
+- RNA-seq analysis methods
+- Protein extraction and digestion protocols
+- SWATH-MS measurement details
+
+NOTES FOR CORRECTION:
+====================
+
+The report currently contains several page number citations that need to be verified against this mapping:
+
+1. Florea citations should reference pages 55-66
+2. Liu et al. citations should reference pages 1228-1239 (note: pages 1228-1229 contain title/abstract, main content starts around 1229)
+
+Key findings that should be properly cited:
+- Intron retention decreases protein abundance (Liu et al., p. 1237)
+- PRPF8 depletion methodology (Liu et al., p. 1229)
+- Splice graph concept (Florea, p. 60)
+- ESE and ISS regulatory elements (Florea, pp. 62-63)
+- Statistical over-representation methods (Florea, p. 64)
+- LAP2 switch event example (Liu et al., pp. 1235-1237) 
