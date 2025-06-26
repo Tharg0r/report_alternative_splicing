@@ -82,11 +82,11 @@ Florea (2005) provides a comprehensive survey of bioinformatics approaches devel
 
 Several computational strategies have been developed to identify splice variants:
 
-\textbf{Direct sequence comparison} involves comparing cDNA and protein sequences from different isoforms to detect insertions, deletions, or substitutions that indicate alternative splicing events.
+\textbf{Direct sequence comparison} involves comparing cDNA and protein sequences from different isoforms to detect insertions, deletions, or substitutions that indicate alternative splicing events. This approach directly identifies sequence differences between isoforms but does not provide information about the underlying genomic structure or splicing mechanisms.
 
-\textbf{Exon-intron structure analysis} uses spliced alignments of cDNA or protein sequences to genomic DNA to distinguish between different types of alternative splicing events and provide genomic context.
+\textbf{Exon-intron structure analysis} uses spliced alignments of cDNA or protein sequences to genomic DNA to distinguish between different types of alternative splicing events and provide genomic context. By mapping expressed sequences back to the genome, this method can precisely identify which exons are included or excluded and characterize the specific type of alternative splicing event (exon skipping, intron retention, etc.).
 
-\textbf{Microarray-based detection} utilizes Affymetrix chips with multiple probes per gene to identify splice variations by detecting differential expression levels when exons are alternatively included or excluded.
+\textbf{Microarray-based detection} utilizes Affymetrix chips with multiple probes per gene to identify splice variations by detecting differential expression levels when exons are alternatively included or excluded. This approach leverages the fact that probes targeting alternatively spliced exons will show reduced signal intensity when those exons are excluded from the mature transcript.
 
 \subsubsection{Data Resources and Alignment Tools}
 
@@ -104,31 +104,31 @@ Specialized alignment tools (EST\_GENOME, Sim4, Spidey, GeneSeqer, BLAT, ESTmapp
 
 Two main bioinformatics approaches have emerged for annotating alternatively spliced transcripts:
 
-\textbf{Gene indices} group EST and mRNA sequences by similarity to create gene-oriented collections. Examples include UniGene, TIGR Gene Indices, and GeneNest. While computationally straightforward, this approach faces challenges with over-clustering, under-clustering, and high computational costs.
+\textbf{Gene indices} group EST and mRNA sequences by similarity to create gene-oriented collections. Examples include UniGene, TIGR Gene Indices, and GeneNest. This sequence similarity-based clustering approach is computationally straightforward but faces significant challenges: over-clustering occurs when sequences from different genes are incorrectly grouped together, under-clustering results from insufficient sequence overlap or sampling, and the computational costs scale poorly with large datasets.
 
-\textbf{Genome-based clustering and assembly} clusters spliced alignments at genomic loci, using the genome as a reference framework. A key innovation is the \textbf{splice graph} representation, which models genes as directed acyclic graphs where:
+\textbf{Genome-based clustering and assembly} addresses many limitations of gene indices by clustering spliced alignments at genomic loci, using the high-quality reference genome sequence as a framework. This approach helps resolve issues with contamination and sequencing errors found in EST-based methods. A particularly important innovation is the \textbf{splice graph} representation, which provides a systematic framework for modeling and analyzing all possible splicing patterns within a gene. The splice graph represents a gene as a directed acyclic graph where:
 \begin{itemize}
     \item Exons are represented as vertices
-    \item Introns are represented as connecting arcs
-    \item Different splice variants correspond to different paths through the graph
+    \item Introns are represented as arcs connecting exons
+    \item Different splice variants correspond to different paths through the graph from start to finish
     \item All possible transcript candidates can be systematically enumerated
 \end{itemize}
 
-Methods like the AIR annotation pipeline and ECgene score and prioritize candidates based on supporting evidence to identify biologically relevant isoforms.
+While this approach enables comprehensive enumeration of transcript possibilities, a major limitation is that some computationally predicted combinations may represent artificial constructs without biological relevance. Methods like the AIR annotation pipeline and ECgene attempt to address this by scoring and prioritizing candidates based on the strength of supporting evidence, helping to distinguish biologically relevant isoforms from computational artifacts.
 
 \subsubsection{Regulatory Element Identification}
 
 Several computational approaches have been developed to identify cis-regulatory elements that control alternative splicing:
 
-\textbf{Consensus sequences} represent simple motif models but cannot quantify nucleotide preferences or capture complex regulatory patterns.
+\textbf{Consensus sequences} represent simple motif models that use IUPAC codes to specify which nucleotides are allowed at each position in a regulatory sequence. However, this approach can only indicate nucleotide permissibility and cannot quantify the relative preference for specific nucleotides at each position.
 
-\textbf{Position Weight Matrices (PWMs)} provide more sophisticated modeling by capturing relative nucleotide preferences at each position within regulatory motifs, constructed from experimentally identified binding sites.
+\textbf{Position Weight Matrices (PWMs)} provide more sophisticated modeling by capturing the relative frequency and preference for each nucleotide at every position within a regulatory motif. PWMs are constructed from experimentally identified binding sites and provide quantitative scoring systems where higher scores indicate stronger matches to the consensus motif. For example, PWMs for important splicing factors like SF2/ASF, SC35, SRp40, and SRp55 have been experimentally derived and validated.
 
-\textbf{Statistical k-mer analysis} searches for short sequences that appear more frequently in specific contexts (e.g., exons vs. introns) than expected by chance.
+\textbf{Statistical k-mer analysis} employs computational approaches to identify short DNA sequences (typically 6-8 nucleotides) that appear with statistically significant over-representation in specific genomic contexts. For instance, researchers compare hexamer frequencies in exons versus introns, or in weakly spliced exons versus strongly spliced ones, to identify potential enhancer or silencer elements based on their enrichment patterns.
 
-\textbf{Motif discovery algorithms} like MEME and Gibbs sampling identify common sequence patterns without prior knowledge of regulatory elements.
+\textbf{Motif discovery algorithms} like MEME and Gibbs sampling use unsupervised machine learning approaches to identify common sequence patterns in sets of related sequences without prior knowledge of regulatory elements. While these methods can discover novel motifs, they may have limited predictive power when applied to large, heterogeneous sequence sets with weak or complex regulatory signals.
 
-\textbf{Comparative genomics} leverages evolutionary conservation to identify functionally important regulatory sequences by comparing orthologous sequences between species.
+\textbf{Comparative genomics} leverages evolutionary conservation analysis to identify functionally important regulatory sequences by comparing orthologous sequences between species. This approach is based on the principle that sequences under functional constraint will be preferentially conserved during evolution. Studies have demonstrated that intronic sequences flanking alternatively spliced exons show stronger evolutionary conservation than those around constitutive exons, indicating the presence of important regulatory elements.
 
 \section{Evaluation}
 
