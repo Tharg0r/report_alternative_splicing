@@ -77,21 +77,9 @@ The core strategy involved depleting \textbf{PRPF8}, a critical component of the
 
 The integrative approach combined two complementary high-throughput technologies ([1], p. 1229):
 
-\textbf{RNA sequencing (RNA-seq)} was employed to comprehensively capture transcriptomic changes, including ([1], p. 1229):
-\begin{itemize}
-    \item Intron retention events
-    \item Differential transcript usage (DTU)
-    \item Differential gene expression (DGE)
-    \item Alternative splicing patterns across the transcriptome
-\end{itemize}
+\textbf{RNA sequencing (RNA-seq)} was employed to comprehensively capture transcriptomic changes across multiple dimensions ([1], p. 1229). The analysis focused on identifying intron retention events, quantifying differential transcript usage (DTU) and differential gene expression (DGE), while systematically cataloging alternative splicing patterns throughout the transcriptome.
 
-\textbf{SWATH-MS (Sequential Window Acquisition of All Theoretical Spectra)} mass spectrometry provided quantitative proteomic analysis ([1], p. 1230). This technique is very good at identifying and, crucially, quantifying lots of different proteins in complex samples. This data-independent acquisition method offers several advantages:
-\begin{itemize}
-    \item Unbiased capture of proteome-wide changes
-    \item High reproducibility and quantitative accuracy
-    \item Ability to identify and quantify thousands of peptides simultaneously
-    \item Comprehensive coverage with 14,695 peptides mapping to 2,805 protein-encoding genes ([1], p. 1230)
-\end{itemize}
+\textbf{SWATH-MS (Sequential Window Acquisition of All Theoretical Spectra)} mass spectrometry provided quantitative proteomic analysis ([1], p. 1230). This data-independent acquisition method enabled unbiased capture of proteome-wide changes through comprehensive and reproducible quantification of complex protein mixtures. The approach achieved extensive proteome coverage, successfully identifying and quantifying 14,695 peptides that mapped to 2,805 protein-encoding genes, while maintaining high quantitative accuracy across thousands of peptides simultaneously ([1], p. 1230).
 
 \textbf{Targeted validation} was performed using selective reaction monitoring (SRM), a more sensitive but lower-throughput mass spectrometric approach ([1], p. 1233). While SWATH-MS can measure thousands of peptides simultaneously, SRM focuses on a smaller number of specific targets with higher precision, making it ideal for confirming the key findings.
 
@@ -115,13 +103,7 @@ Several computational strategies have been developed to identify splice variants
 
 \subsubsection{Data Resources and Alignment Tools}
 
-Key sequence databases include ([2], p. 57):
-\begin{itemize}
-    \item \textbf{dbEST}: Database for expressed sequence tags
-    \item \textbf{RefSeq}: NCBI's curated full-length mRNA sequences
-    \item \textbf{Mammalian Gene Collection (MGC)}: Full-length open reading frame sequences
-    \item \textbf{UniProt}: Universal protein sequence database
-\end{itemize}
+Key sequence databases utilized in these analyses include \textbf{dbEST} (Database for expressed sequence tags), \textbf{RefSeq} (NCBI's curated full-length mRNA sequences), the \textbf{Mammalian Gene Collection (MGC)} containing full-length open reading frame sequences, and \textbf{UniProt} as the universal protein sequence database ([2], p. 57).
 
 Specialized alignment tools (EST\_GENOME, Sim4, Spidey, GeneSeqer, BLAT, ESTmapper, MGAlignIt, GMAP) have been developed to accurately align cDNA sequences to genomic sequences, accounting for splicing patterns ([2], pp. 57-58).
 
@@ -131,13 +113,7 @@ Two main bioinformatics approaches have emerged for annotating alternatively spl
 
 \textbf{Gene indices} group EST and mRNA sequences by similarity to create gene-oriented collections ([2], pp. 58-59). Examples include UniGene, TIGR Gene Indices, and GeneNest. This sequence similarity-based clustering approach is computationally straightforward but faces significant challenges: over-clustering occurs when sequences from different genes are incorrectly grouped together, under-clustering results from insufficient sequence overlap or sampling, and the computational costs scale poorly with large datasets ([2], p. 59).
 
-\textbf{Genome-based clustering and assembly} addresses many limitations of gene indices by clustering spliced alignments at genomic loci, using the high-quality reference genome sequence as a framework ([2], pp. 59-60). This approach helps resolve issues with contamination and sequencing errors found in EST-based methods. A particularly important innovation is the \textbf{splice graph} representation, which provides a systematic framework for modeling and analyzing all possible splicing patterns within a gene ([2], p. 60). The splice graph represents a gene as a directed acyclic graph where:
-\begin{itemize}
-    \item Exons are represented as vertices
-    \item Introns are represented as arcs connecting exons
-    \item Different splice variants correspond to different paths through the graph from start to finish
-    \item All possible transcript candidates can be systematically enumerated
-\end{itemize}
+\textbf{Genome-based clustering and assembly} addresses many limitations of gene indices by clustering spliced alignments at genomic loci, using the high-quality reference genome sequence as a framework ([2], pp. 59-60). This approach helps resolve issues with contamination and sequencing errors found in EST-based methods. A particularly important innovation is the \textbf{splice graph} representation, which provides a systematic framework for modeling and analyzing all possible splicing patterns within a gene ([2], p. 60). The splice graph represents a gene as a directed acyclic graph where exons are represented as vertices, introns are represented as arcs connecting exons, different splice variants correspond to different paths through the graph from start to finish, and all possible transcript candidates can be systematically enumerated.
 
 While this approach enables comprehensive enumeration of transcript possibilities, a major limitation is that some computationally predicted combinations may represent artificial constructs without biological relevance. Methods like the AIR annotation pipeline and ECgene attempt to address this by scoring and prioritizing candidates based on the strength of supporting evidence, helping to distinguish biologically relevant isoforms from computational artifacts ([2], p. 60).
 
@@ -187,13 +163,7 @@ The approach successfully provided quantitative evidence for specific relationsh
 
 \subsubsection{Technical Performance Metrics}
 
-The SWATH-MS approach showed excellent technical performance:
-\begin{itemize}
-    \item High reproducibility across biological replicates
-    \item Comprehensive coverage with 14,695 quantified peptides ([1], p. 1230)
-    \item Successful integration with RNA-seq data through the major transcript strategy
-    \item Validation of key findings through targeted SRM analysis
-\end{itemize}
+The SWATH-MS approach showed excellent technical performance, demonstrating high reproducibility across biological replicates, comprehensive coverage with 14,695 quantified peptides ([1], p. 1230), successful integration with RNA-seq data through the major transcript strategy, and validation of key findings through targeted SRM analysis.
 
 \subsubsection{Limitations and Challenges}
 
@@ -247,14 +217,7 @@ The analysis of these complementary approaches to studying alternative splicing 
 
 The key findings demonstrate that alternative splicing serves as a critical regulatory mechanism that functionally tunes the human proteome. The quantitative evidence shows that changes in isoform usage manifest as measurable protein abundance changes, with clear relationships between specific splicing events and their proteomic consequences. The successful demonstration of functional significance through examples like LAP2 isoform switching validates alternative splicing as a mechanism for achieving biological complexity from limited genetic resources.
 
-Most importantly, these methodological advances establish a foundation for translating splicing research into therapeutic applications ([1], p. 1238). The ability to quantitatively measure splicing-proteome relationships opens new possibilities for:
-
-\begin{itemize}
-    \item \textbf{Therapeutic manipulation of splicing}: The potential to design therapies that correct faulty splicing patterns or selectively promote the production of beneficial isoforms over harmful ones
-    \item \textbf{Diagnostic tool development}: Creating new diagnostic approaches based on identifying specific isoform signatures that characterize disease states or predict treatment responses
-    \item \textbf{Personalized medicine applications}: Targeting specific splicing events that drive disease in individual patients, moving beyond one-size-fits-all treatments to precision therapies tailored to a patient's unique splicing profile
-    \item \textbf{Fine-tuning the proteome for health}: Developing strategies to therapeutically modulate the cellular protein landscape by controlling alternative splicing patterns, potentially correcting disease-associated protein imbalances
-\end{itemize}
+Most importantly, these methodological advances establish a foundation for translating splicing research into therapeutic applications ([1], p. 1238). The ability to quantitatively measure splicing-proteome relationships opens new possibilities for \textbf{therapeutic manipulation of splicing}, enabling the design of therapies that correct faulty splicing patterns or selectively promote beneficial isoforms over harmful ones. This foundation also supports \textbf{diagnostic tool development} through identification of specific isoform signatures that characterize disease states or predict treatment responses. Additionally, the approach enables \textbf{personalized medicine applications} that target specific splicing events driving disease in individual patients, moving beyond one-size-fits-all treatments to precision therapies tailored to each patient's unique splicing profile. Finally, these advances allow for \textbf{fine-tuning the proteome for health} by developing strategies to therapeutically modulate the cellular protein landscape through controlled alternative splicing patterns, potentially correcting disease-associated protein imbalances.
 
 The convergence of experimental quantification and computational prediction provides the necessary tools to move from cataloging splicing diversity to actively manipulating it for therapeutic benefit. As many human diseases involve splicing defects, this represents an exciting frontier in precision medicine where the detailed understanding of splicing mechanisms can be translated into targeted interventions for improved patient outcomes.
 
