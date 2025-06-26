@@ -10,6 +10,8 @@
 \usepackage{cite}
 \usepackage{url}
 \usepackage{enumitem}
+\usepackage{float}
+\usepackage{placeins}
 
 \title{Report on the Impact and Bioinformatics of Alternative Splicing}
 \author{Samuel J. Koch \\
@@ -30,6 +32,13 @@ Alternative splicing (AS) is a fundamental biological process that enables a sin
 
 Alternative splicing (AS) represents one of the most important mechanisms by which eukaryotic organisms achieve biological complexity from a relatively limited genetic repertoire. This process allows a single gene to produce multiple messenger RNA (mRNA) and protein isoforms by selectively combining different exons during RNA processing. The significance of alternative splicing becomes apparent when considering that humans possess only approximately 20,000-25,000 protein-coding genes, yet produce hundreds of thousands of distinct proteins with diverse functions, localizations, and regulatory properties.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{alt_splicing_figure_1_florea.png}
+\caption{Types of alternative splicing events: (a) exon inclusion/exclusion; (b) alternative 3' end; (c) alternative 5' end; (d) intron retention; (e,f) alternative UTRs. Adapted from Florea (2005).}
+\label{fig:alt_splicing_types}
+\end{figure}
+
 The molecular mechanism of alternative splicing involves the selective inclusion or exclusion of exons during the maturation of pre-mRNA transcripts. Different combinations of exons can be incorporated into the final mRNA molecule, with each unique transcript serving as a template for producing distinct protein variants. These protein isoforms may exhibit dramatically different, and sometimes antagonistic, functional and structural properties, enabling fine-tuned regulation of cellular processes across different tissues, developmental stages, and environmental conditions.
 
 The biological importance of alternative splicing extends far beyond simply increasing protein diversity. Defects in mRNA splicing patterns and their regulation have been implicated in numerous human diseases, including various cancers, neurological disorders, and genetic diseases. Understanding how splicing perturbations affect protein abundance and function is therefore crucial for developing therapeutic strategies and diagnostic approaches.
@@ -43,6 +52,13 @@ This report examines two complementary approaches to understanding alternative s
 \subsection{Integrative Experimental Methods}
 
 Liu et al. (2017) developed a comprehensive experimental framework to quantitatively assess the impact of alternative splicing perturbations on proteome composition. Their approach represents a significant methodological advance by directly linking transcriptomic changes to proteomic outcomes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{framework_figure_1_liu.png}
+\caption{Experimental framework integrating RNA-seq and mass spectrometry to study alternative splicing impact on the proteome. Adapted from Liu et al. (2017).}
+\label{fig:experimental_framework}
+\end{figure}
 
 \subsubsection{Experimental Design}
 
@@ -116,6 +132,13 @@ Two main bioinformatics approaches have emerged for annotating alternatively spl
 
 While this approach enables comprehensive enumeration of transcript possibilities, a major limitation is that some computationally predicted combinations may represent artificial constructs without biological relevance. Methods like the AIR annotation pipeline and ECgene attempt to address this by scoring and prioritizing candidates based on the strength of supporting evidence, helping to distinguish biologically relevant isoforms from computational artifacts.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{splice_graph_figure_2e_florea.png}
+\caption{EST sequences from the 5' and 3' ends of the gene are compared to identify compatible overlaps and then assembled into consensus sequences (TC1, TC2) representing putative splice variants. Spliced alignments of cDNAs on the genome (E1-E5) are clustered along the genomic axis and consolidated into splice graphs. Vertices in the splice graph represent exons (a-h), arcs are introns connecting the exons consistently with the cDNA evidence, and a branching in the graph signals an alternative splicing event. Splice variants (V1-V4) are read from the graph as paths from a source vertex (with no 'in' arc) to a sink vertex (with no 'out' arc). Adapted from Florea (2005).}
+\label{fig:splice_graph}
+\end{figure}
+
 \subsubsection{Regulatory Element Identification}
 
 Several computational approaches have been developed to identify cis-regulatory elements that control alternative splicing:
@@ -141,6 +164,13 @@ The integrative methodology developed by Liu et al. (2017) demonstrates several 
 The approach successfully provided quantitative evidence for specific relationships between splicing events and protein abundance:
 
 \textbf{Intron retention correlation}: The method consistently demonstrated that intron retention events are associated with decreased protein abundance. Introns are the non-coding segments that are normally removed during RNA processing. When introns are unexpectedly retained (kept in) the final mRNA, this consistently leads to less protein being made. This occurs because these faulty mRNAs might get stuck in the nucleus (unable to reach the protein-making machinery) or get destroyed by the cell's quality control system called nonsense-mediated decay (NMD), which cleans up potentially problematic messages.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{intron_retention_figure_6_liu.png}
+\caption{Intron retention reduces protein levels compared to genes without retained introns. Adapted from Liu et al. (2017).}
+\label{fig:intron_retention}
+\end{figure}
 
 \textbf{Proportional abundance changes}: Changes in differential transcript usage and differential gene expression produced protein abundance changes proportionate to transcript levels, validating the dominant role of mRNA abundance in determining protein levels under splicing perturbation conditions.
 
