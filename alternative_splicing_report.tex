@@ -15,22 +15,31 @@
 
 \title{Report on the Impact and Bioinformatics of Alternative Splicing}
 \author{Samuel J. Koch \\
-        Problem Based Learning Bioinformatics (PBL)}
+        Technical University of Munich (TUM) \\
+        Problem Based Learning Bioinformatics (PBL) \\
+        Supervisor: Prof. Dr. rer. nat. Dimitri Frischmann \\
+        Summer Semester 2025}
 \date{\today}
 
 \begin{document}
 
 \maketitle
+\newpage
+
+\tableofcontents
+\newpage
 
 \doublespacing
 
 \begin{abstract}
-Alternative splicing (AS) is a fundamental biological process that enables a single gene to produce multiple protein isoforms, significantly contributing to proteomic diversity in eukaryotic organisms. This report examines two influential studies: Liu et al. (2017), which developed an integrative experimental approach combining RNA-seq with mass spectrometry to quantitatively assess how splicing perturbations affect proteome composition, and Florea (2005), which provides a comprehensive overview of bioinformatics methods for identifying and characterizing alternative splicing events and their regulatory elements. The integrative approach successfully demonstrated that changes in mRNA splicing patterns translate into measurable protein abundance changes, with intron retention consistently associated with decreased protein levels and differential transcript usage producing proportionate protein changes. Bioinformatics methods ranging from sequence comparison to splice graph modeling have proven effective for cataloguing splicing variants, though challenges remain in distinguishing biologically relevant isoforms from computational artifacts. These advances establish a foundation for therapeutic interventions targeting splicing defects in human diseases and open new possibilities for personalized medicine approaches based on isoform signatures.
+Alternative splicing (AS) is a fundamental biological process that enables a single gene to produce multiple protein isoforms, significantly contributing to proteomic diversity in eukaryotic organisms. This report examines two influential studies: Liu et al. (2017) ``Impact of Alternative Splicing on the Human Proteome'', which developed an integrative experimental approach combining RNA-seq with mass spectrometry to quantitatively assess how splicing perturbations affect proteome composition, and Florea (2005) ``Bioinformatics of alternative splicing and its regulation'', which provides a comprehensive overview of bioinformatics methods for identifying and characterizing alternative splicing events and their regulatory elements. The integrative approach successfully demonstrated that changes in mRNA splicing patterns translate into measurable protein abundance changes, with intron retention consistently associated with decreased protein levels and differential transcript usage producing proportionate protein changes. Bioinformatics methods ranging from sequence comparison to splice graph modeling have proven effective for cataloguing splicing variants, though challenges remain in distinguishing biologically relevant isoforms from computational artifacts. These advances establish a foundation for therapeutic interventions targeting splicing defects in human diseases and open new possibilities for personalized medicine approaches based on isoform signatures.
 \end{abstract}
+
+\newpage
 
 \section{Introduction}
 
-Alternative splicing (AS) represents one of the most important mechanisms by which eukaryotic organisms achieve biological complexity from a relatively limited genetic repertoire. This process allows a single gene to produce multiple messenger RNA (mRNA) and protein isoforms by selectively combining different exons during RNA processing. The significance of alternative splicing becomes apparent when considering that humans possess only approximately 20,000-25,000 protein-coding genes, yet produce hundreds of thousands of distinct proteins with diverse functions, localizations, and regulatory properties.
+Alternative splicing (AS) represents one of the most important mechanisms by which eukaryotic organisms achieve biological complexity from a relatively limited genetic repertoire. This process allows a single gene to produce multiple messenger RNA (mRNA) and protein isoforms by selectively combining different exons during RNA processing. The significance of alternative splicing becomes apparent when considering that humans possess only approximately 25,000 protein-coding genes ([3]), yet produce hundreds of thousands of distinct proteins with diverse functions, localizations, and regulatory properties.
 
 \begin{figure}[H]
 \centering
@@ -51,7 +60,7 @@ This report examines two complementary approaches to understanding alternative s
 
 \subsection{Integrative Experimental Methods}
 
-Liu et al. (2017) developed a comprehensive experimental framework to quantitatively assess the impact of alternative splicing perturbations on proteome composition. Their approach represents a significant methodological advance by directly linking transcriptomic changes to proteomic outcomes.
+Liu et al. (2017) developed a comprehensive experimental framework to quantitatively assess the impact of alternative splicing perturbations on proteome composition ([1], p. 1229). Their approach represents a significant methodological advance by directly linking transcriptomic changes to proteomic outcomes.
 
 \begin{figure}[H]
 \centering
@@ -62,13 +71,13 @@ Liu et al. (2017) developed a comprehensive experimental framework to quantitati
 
 \subsubsection{Experimental Design}
 
-The core strategy involved depleting \textbf{PRPF8}, a critical component of the U5 small nuclear ribonucleoprotein (snRNP) within the spliceosome. PRPF8 is essentially a key part of the spliceosome - the large molecular machine that actually performs the splicing of RNA. By reducing this critical component, the researchers could intentionally disrupt normal splicing patterns and then directly measure the consequences. This experimental perturbation model enabled quantitative assessment of how splicing changes affect protein expression patterns.
+The core strategy involved depleting \textbf{PRPF8}, a critical component of the U5 small nuclear ribonucleoprotein (snRNP) within the spliceosome ([1], p. 1229). PRPF8 is essentially a key part of the spliceosome - the large molecular machine that actually performs the splicing of RNA. By reducing this critical component, the researchers could intentionally disrupt normal splicing patterns and then directly measure the consequences. This experimental perturbation model enabled quantitative assessment of how splicing changes affect protein expression patterns.
 
 \subsubsection{Multi-omics Integration}
 
-The integrative approach combined two complementary high-throughput technologies:
+The integrative approach combined two complementary high-throughput technologies ([1], p. 1229):
 
-\textbf{RNA sequencing (RNA-seq)} was employed to comprehensively capture transcriptomic changes, including:
+\textbf{RNA sequencing (RNA-seq)} was employed to comprehensively capture transcriptomic changes, including ([1], p. 1229):
 \begin{itemize}
     \item Intron retention events
     \item Differential transcript usage (DTU)
@@ -76,37 +85,37 @@ The integrative approach combined two complementary high-throughput technologies
     \item Alternative splicing patterns across the transcriptome
 \end{itemize}
 
-\textbf{SWATH-MS (Sequential Window Acquisition of All Theoretical Spectra)} mass spectrometry provided quantitative proteomic analysis. This technique is very good at identifying and, crucially, quantifying lots of different proteins in complex samples. This data-independent acquisition method offers several advantages:
+\textbf{SWATH-MS (Sequential Window Acquisition of All Theoretical Spectra)} mass spectrometry provided quantitative proteomic analysis ([1], p. 1230). This technique is very good at identifying and, crucially, quantifying lots of different proteins in complex samples. This data-independent acquisition method offers several advantages:
 \begin{itemize}
     \item Unbiased capture of proteome-wide changes
     \item High reproducibility and quantitative accuracy
     \item Ability to identify and quantify thousands of peptides simultaneously
-    \item Comprehensive coverage with 14,695 peptides mapping to 2,805 protein-encoding genes
+    \item Comprehensive coverage with 14,695 peptides mapping to 2,805 protein-encoding genes ([1], p. 1230)
 \end{itemize}
 
-\textbf{Targeted validation} was performed using selective reaction monitoring (SRM), a more sensitive but lower-throughput mass spectrometric approach. While SWATH-MS can measure thousands of peptides simultaneously, SRM focuses on a smaller number of specific targets with higher precision, making it ideal for confirming the key findings.
+\textbf{Targeted validation} was performed using selective reaction monitoring (SRM), a more sensitive but lower-throughput mass spectrometric approach ([1], p. 1233). While SWATH-MS can measure thousands of peptides simultaneously, SRM focuses on a smaller number of specific targets with higher precision, making it ideal for confirming the key findings.
 
 \subsubsection{Data Integration Strategy}
 
-A significant challenge was \textbf{integrating transcriptomic and proteomic datasets}, particularly regarding peptide assignment. The problem was that many peptides (protein fragments detected by mass spectrometry) could come from multiple different transcript isoforms of the same gene, making it unclear which transcript was actually responsible for producing the detected protein. The study devised a clever strategy that used information from RNA-seq experiments to guide these assignments. They realized that not all transcripts are created equal - for each gene, they focused only on the \textbf{major transcript} (the most abundant isoform being produced). This approach provided much more usable information and better correlations compared to trying to assign peptides to all differently used transcripts regardless of their expression levels, which just added noise to the analysis.
+A significant challenge was \textbf{integrating transcriptomic and proteomic datasets}, particularly regarding peptide assignment ([1], pp. 1231-1233). The problem was that many peptides (protein fragments detected by mass spectrometry) could come from multiple different transcript isoforms of the same gene, making it unclear which transcript was actually responsible for producing the detected protein. The study devised a novel strategy that used information from RNA-seq experiments to guide these assignments. They realized that not all transcripts are created equal - for each gene, they focused only on the \textbf{major transcript} (the most abundant isoform being produced). This approach provided much more usable information and better correlations compared to trying to assign peptides to all differently used transcripts regardless of their expression levels, which just added noise to the analysis.
 
 \subsection{Bioinformatics Methods for Alternative Splicing Analysis}
 
-Florea (2005) provides a comprehensive survey of bioinformatics approaches developed to identify, characterize, and catalog alternative splicing events and their regulatory mechanisms.
+Florea (2005) provides a comprehensive survey of bioinformatics approaches developed to identify, characterize, and catalog alternative splicing events and their regulatory mechanisms ([2], p. 57).
 
 \subsubsection{Sequence-Based Detection Methods}
 
-Several computational strategies have been developed to identify splice variants:
+Several computational strategies have been developed to identify splice variants ([2], p. 57):
 
-\textbf{Direct sequence comparison} involves comparing cDNA and protein sequences from different isoforms to detect insertions, deletions, or substitutions that indicate alternative splicing events. This approach directly identifies sequence differences between isoforms but does not provide information about the underlying genomic structure or splicing mechanisms.
+\textbf{Direct sequence comparison} involves comparing cDNA and protein sequences from different isoforms to detect insertions, deletions, or substitutions that indicate alternative splicing events ([2], p. 57). This approach directly identifies sequence differences between isoforms but does not provide information about the underlying genomic structure or splicing mechanisms.
 
-\textbf{Exon-intron structure analysis} uses spliced alignments of cDNA or protein sequences to genomic DNA to distinguish between different types of alternative splicing events and provide genomic context. By mapping expressed sequences back to the genome, this method can precisely identify which exons are included or excluded and characterize the specific type of alternative splicing event (exon skipping, intron retention, etc.).
+\textbf{Exon-intron structure analysis} uses spliced alignments of cDNA or protein sequences to genomic DNA to distinguish between different types of alternative splicing events and provide genomic context ([2], p. 57). By mapping expressed sequences back to the genome, this method can precisely identify which exons are included or excluded and characterize the specific type of alternative splicing event (exon skipping, intron retention, etc.).
 
-\textbf{Microarray-based detection} utilizes Affymetrix chips with multiple probes per gene to identify splice variations by detecting differential expression levels when exons are alternatively included or excluded. This approach leverages the fact that probes targeting alternatively spliced exons will show reduced signal intensity when those exons are excluded from the mature transcript.
+\textbf{Microarray-based detection} utilizes Affymetrix chips with multiple probes per gene to identify splice variations by detecting differential expression levels when exons are alternatively included or excluded ([2], p. 60). This approach leverages the fact that probes targeting alternatively spliced exons will show reduced signal intensity when those exons are excluded from the mature transcript.
 
 \subsubsection{Data Resources and Alignment Tools}
 
-Key sequence databases include:
+Key sequence databases include ([2], p. 57):
 \begin{itemize}
     \item \textbf{dbEST}: Database for expressed sequence tags
     \item \textbf{RefSeq}: NCBI's curated full-length mRNA sequences
@@ -114,15 +123,15 @@ Key sequence databases include:
     \item \textbf{UniProt}: Universal protein sequence database
 \end{itemize}
 
-Specialized alignment tools (EST\_GENOME, Sim4, Spidey, GeneSeqer, BLAT, ESTmapper, MGAlignIt, GMAP) have been developed to accurately align cDNA sequences to genomic sequences, accounting for splicing patterns.
+Specialized alignment tools (EST\_GENOME, Sim4, Spidey, GeneSeqer, BLAT, ESTmapper, MGAlignIt, GMAP) have been developed to accurately align cDNA sequences to genomic sequences, accounting for splicing patterns ([2], pp. 57-58).
 
 \subsubsection{Transcript Assembly Strategies}
 
-Two main bioinformatics approaches have emerged for annotating alternatively spliced transcripts:
+Two main bioinformatics approaches have emerged for annotating alternatively spliced transcripts ([2], pp. 58-60):
 
-\textbf{Gene indices} group EST and mRNA sequences by similarity to create gene-oriented collections. Examples include UniGene, TIGR Gene Indices, and GeneNest. This sequence similarity-based clustering approach is computationally straightforward but faces significant challenges: over-clustering occurs when sequences from different genes are incorrectly grouped together, under-clustering results from insufficient sequence overlap or sampling, and the computational costs scale poorly with large datasets.
+\textbf{Gene indices} group EST and mRNA sequences by similarity to create gene-oriented collections ([2], pp. 58-59). Examples include UniGene, TIGR Gene Indices, and GeneNest. This sequence similarity-based clustering approach is computationally straightforward but faces significant challenges: over-clustering occurs when sequences from different genes are incorrectly grouped together, under-clustering results from insufficient sequence overlap or sampling, and the computational costs scale poorly with large datasets ([2], p. 59).
 
-\textbf{Genome-based clustering and assembly} addresses many limitations of gene indices by clustering spliced alignments at genomic loci, using the high-quality reference genome sequence as a framework. This approach helps resolve issues with contamination and sequencing errors found in EST-based methods. A particularly important innovation is the \textbf{splice graph} representation, which provides a systematic framework for modeling and analyzing all possible splicing patterns within a gene. The splice graph represents a gene as a directed acyclic graph where:
+\textbf{Genome-based clustering and assembly} addresses many limitations of gene indices by clustering spliced alignments at genomic loci, using the high-quality reference genome sequence as a framework ([2], pp. 59-60). This approach helps resolve issues with contamination and sequencing errors found in EST-based methods. A particularly important innovation is the \textbf{splice graph} representation, which provides a systematic framework for modeling and analyzing all possible splicing patterns within a gene ([2], p. 60). The splice graph represents a gene as a directed acyclic graph where:
 \begin{itemize}
     \item Exons are represented as vertices
     \item Introns are represented as arcs connecting exons
@@ -130,7 +139,7 @@ Two main bioinformatics approaches have emerged for annotating alternatively spl
     \item All possible transcript candidates can be systematically enumerated
 \end{itemize}
 
-While this approach enables comprehensive enumeration of transcript possibilities, a major limitation is that some computationally predicted combinations may represent artificial constructs without biological relevance. Methods like the AIR annotation pipeline and ECgene attempt to address this by scoring and prioritizing candidates based on the strength of supporting evidence, helping to distinguish biologically relevant isoforms from computational artifacts.
+While this approach enables comprehensive enumeration of transcript possibilities, a major limitation is that some computationally predicted combinations may represent artificial constructs without biological relevance. Methods like the AIR annotation pipeline and ECgene attempt to address this by scoring and prioritizing candidates based on the strength of supporting evidence, helping to distinguish biologically relevant isoforms from computational artifacts ([2], p. 60).
 
 \begin{figure}[H]
 \centering
@@ -141,17 +150,17 @@ While this approach enables comprehensive enumeration of transcript possibilitie
 
 \subsubsection{Regulatory Element Identification}
 
-Several computational approaches have been developed to identify cis-regulatory elements that control alternative splicing:
+Several computational approaches have been developed to identify cis-regulatory elements that control alternative splicing ([2], pp. 63-65):
 
-\textbf{Consensus sequences} represent simple motif models that use IUPAC codes to specify which nucleotides are allowed at each position in a regulatory sequence. However, this approach can only indicate nucleotide permissibility and cannot quantify the relative preference for specific nucleotides at each position.
+\textbf{Consensus sequences} represent simple motif models that use IUPAC codes to specify which nucleotides are allowed at each position in a regulatory sequence ([2], p. 63). However, this approach can only indicate nucleotide permissibility and cannot quantify the relative preference for specific nucleotides at each position.
 
-\textbf{Position Weight Matrices (PWMs)} provide more sophisticated modeling by capturing the relative frequency and preference for each nucleotide at every position within a regulatory motif. PWMs are constructed from experimentally identified binding sites and provide quantitative scoring systems where higher scores indicate stronger matches to the consensus motif. For example, PWMs for important splicing factors like SF2/ASF, SC35, SRp40, and SRp55 have been experimentally derived and validated.
+\textbf{Position Weight Matrices (PWMs)} provide more sophisticated modeling by capturing the relative frequency and preference for each nucleotide at every position within a regulatory motif ([2], p. 64). PWMs are constructed from experimentally identified binding sites and provide quantitative scoring systems where higher scores indicate stronger matches to the consensus motif. For example, PWMs for important splicing factors like SF2/ASF, SC35, SRp40, and SRp55 have been experimentally derived and validated.
 
-\textbf{Statistical k-mer analysis} employs computational approaches to identify short DNA sequences (typically 6-8 nucleotides) that appear with statistically significant over-representation in specific genomic contexts. For instance, researchers compare hexamer frequencies in exons versus introns, or in weakly spliced exons versus strongly spliced ones, to identify potential enhancer or silencer elements based on their enrichment patterns.
+\textbf{Statistical k-mer analysis} employs computational approaches to identify short DNA sequences (typically 6-8 nucleotides) that appear with statistically significant over-representation in specific genomic contexts ([2], p. 64). For instance, researchers compare hexamer frequencies in exons versus introns, or in weakly spliced exons versus strongly spliced ones, to identify potential enhancer or silencer elements based on their enrichment patterns.
 
-\textbf{Motif discovery algorithms} like MEME and Gibbs sampling use unsupervised machine learning approaches to identify common sequence patterns in sets of related sequences without prior knowledge of regulatory elements. While these methods can discover novel motifs, they may have limited predictive power when applied to large, heterogeneous sequence sets with weak or complex regulatory signals.
+\textbf{Motif discovery algorithms} like MEME and Gibbs sampling use unsupervised machine learning approaches to identify common sequence patterns in sets of related sequences without prior knowledge of regulatory elements ([2], p. 65). While these methods can discover novel motifs, they may have limited predictive power when applied to large, heterogeneous sequence sets with weak or complex regulatory signals.
 
-\textbf{Comparative genomics} leverages evolutionary conservation analysis to identify functionally important regulatory sequences by comparing orthologous sequences between species. This approach is based on the principle that sequences under functional constraint will be preferentially conserved during evolution. Studies have demonstrated that intronic sequences flanking alternatively spliced exons show stronger evolutionary conservation than those around constitutive exons, indicating the presence of important regulatory elements.
+\textbf{Comparative genomics} leverages evolutionary conservation analysis to identify functionally important regulatory sequences by comparing orthologous sequences between species ([2], p. 65). This approach is based on the principle that sequences under functional constraint will be preferentially conserved during evolution. Studies have demonstrated that intronic sequences flanking alternatively spliced exons show stronger evolutionary conservation than those around constitutive exons, indicating the presence of important regulatory elements.
 
 \section{Evaluation}
 
@@ -163,7 +172,7 @@ The integrative methodology developed by Liu et al. (2017) demonstrates several 
 
 The approach successfully provided quantitative evidence for specific relationships between splicing events and protein abundance:
 
-\textbf{Intron retention correlation}: The method consistently demonstrated that intron retention events are associated with decreased protein abundance. Introns are the non-coding segments that are normally removed during RNA processing. When introns are unexpectedly retained (kept in) the final mRNA, this consistently leads to less protein being made. This occurs because these faulty mRNAs might get stuck in the nucleus (unable to reach the protein-making machinery) or get destroyed by the cell's quality control system called nonsense-mediated decay (NMD), which cleans up potentially problematic messages.
+\textbf{Intron retention correlation}: The method consistently demonstrated that intron retention events are associated with decreased protein abundance ([1], p. 1237). Introns are the non-coding segments that are normally removed during RNA processing. When introns are unexpectedly retained (kept in) the final mRNA, this consistently leads to less protein being made. This occurs because these faulty mRNAs might get stuck in the nucleus (unable to reach the protein-making machinery) or get destroyed by the cell's quality control system called nonsense-mediated decay (NMD), which cleans up potentially problematic messages.
 
 \begin{figure}[H]
 \centering
@@ -172,16 +181,16 @@ The approach successfully provided quantitative evidence for specific relationsh
 \label{fig:intron_retention}
 \end{figure}
 
-\textbf{Proportional abundance changes}: Changes in differential transcript usage and differential gene expression produced protein abundance changes proportionate to transcript levels, validating the dominant role of mRNA abundance in determining protein levels under splicing perturbation conditions.
+\textbf{Proportional abundance changes}: Changes in differential transcript usage and differential gene expression produced protein abundance changes proportionate to transcript levels ([1], p. 1238), validating the dominant role of mRNA abundance in determining protein levels under splicing perturbation conditions.
 
-\textbf{Functional validation through isoform switches}: The detailed analysis of lamin-associated polypeptide (LAP2) isoform switching provided compelling evidence for functional consequences. This protein serves as an excellent example because its different isoforms have been well-characterized and do very different jobs in the cell. After PRPF8 depletion, the dominant LAP2 isoform switched from LAP2b to LAP2a. Essentially, the cell switched from making mostly the "b" version to mostly the "a" version. Functionally, \textbf{LAP2b sits at the nuclear lamina} (the inner edge of the nucleus) and acts as a repressor, keeping certain genes quiet, including important targets of p53 and NF-$\kappa$B - key regulators of cell growth, stress response, and inflammation. In contrast, \textbf{LAP2a is found throughout the nuclear interior} and is involved in the structural organization of the nucleus, doing a different job in a different location. The isoform switch led to altered LAP2 localization and \textbf{de-repression of p53 and NF-$\kappa$B transcriptional targets}. In simple terms, since LAP2b (the repressor) was reduced and LAP2a took over, the brakes came off those target genes, which became more active, demonstrating clear biological significance.
+\textbf{Functional validation through isoform switches}: The detailed analysis of lamin-associated polypeptide (LAP2) isoform switching provided compelling evidence for functional consequences ([1], p. 1235). This protein serves as an excellent example because its different isoforms have been well-characterized and do very different jobs in the cell. After PRPF8 depletion, the dominant LAP2 isoform switched from LAP2b to LAP2a ([1], p. 1235). Essentially, the cell switched from making mostly the "b" version to mostly the "a" version. Functionally, \textbf{LAP2b sits at the nuclear lamina} (the inner edge of the nucleus) and acts as a repressor, keeping certain genes quiet, including important targets of p53 and NF-$\kappa$B - key regulators of cell growth, stress response, and inflammation ([1], p. 1235). In contrast, \textbf{LAP2a is found throughout the nuclear interior} and is involved in the structural organization of the nucleus, doing a different job in a different location ([1], p. 1235). The isoform switch led to altered LAP2 localization and \textbf{de-repression of p53 and NF-$\kappa$B transcriptional targets} ([1], p. 1237). In simple terms, since LAP2b (the repressor) was reduced and LAP2a took over, the brakes came off those target genes, which became more active, demonstrating clear biological significance.
 
 \subsubsection{Technical Performance Metrics}
 
 The SWATH-MS approach showed excellent technical performance:
 \begin{itemize}
     \item High reproducibility across biological replicates
-    \item Comprehensive coverage with 14,695 quantified peptides
+    \item Comprehensive coverage with 14,695 quantified peptides ([1], p. 1230)
     \item Successful integration with RNA-seq data through the major transcript strategy
     \item Validation of key findings through targeted SRM analysis
 \end{itemize}
@@ -238,13 +247,13 @@ The analysis of these complementary approaches to studying alternative splicing 
 
 The key findings demonstrate that alternative splicing serves as a critical regulatory mechanism that functionally tunes the human proteome. The quantitative evidence shows that changes in isoform usage manifest as measurable protein abundance changes, with clear relationships between specific splicing events and their proteomic consequences. The successful demonstration of functional significance through examples like LAP2 isoform switching validates alternative splicing as a mechanism for achieving biological complexity from limited genetic resources.
 
-Most importantly, these methodological advances establish a foundation for translating splicing research into therapeutic applications. The ability to quantitatively measure splicing-proteome relationships opens new possibilities for:
+Most importantly, these methodological advances establish a foundation for translating splicing research into therapeutic applications ([1], p. 1238). The ability to quantitatively measure splicing-proteome relationships opens new possibilities for:
 
 \begin{itemize}
-    \item \textbf{Precision diagnostics}: Developing diagnostic approaches based on isoform signatures that characterize disease states or predict treatment responses
-    \item \textbf{Therapeutic targeting}: Designing interventions that correct faulty splicing patterns or promote beneficial isoform production
-    \item \textbf{Personalized medicine}: Tailoring treatments to individual patients' unique splicing profiles
-    \item \textbf{Proteome modulation}: Developing strategies to therapeutically adjust cellular protein landscapes through splicing control
+    \item \textbf{Therapeutic manipulation of splicing}: The potential to design therapies that correct faulty splicing patterns or selectively promote the production of beneficial isoforms over harmful ones
+    \item \textbf{Diagnostic tool development}: Creating new diagnostic approaches based on identifying specific isoform signatures that characterize disease states or predict treatment responses
+    \item \textbf{Personalized medicine applications}: Targeting specific splicing events that drive disease in individual patients, moving beyond one-size-fits-all treatments to precision therapies tailored to a patient's unique splicing profile
+    \item \textbf{Fine-tuning the proteome for health}: Developing strategies to therapeutically modulate the cellular protein landscape by controlling alternative splicing patterns, potentially correcting disease-associated protein imbalances
 \end{itemize}
 
 The convergence of experimental quantification and computational prediction provides the necessary tools to move from cataloging splicing diversity to actively manipulating it for therapeutic benefit. As many human diseases involve splicing defects, this represents an exciting frontier in precision medicine where the detailed understanding of splicing mechanisms can be translated into targeted interventions for improved patient outcomes.
@@ -256,5 +265,7 @@ Future research directions should focus on expanding these integrative approache
 [1] Liu, Y., Gonzàlez-Porta, M., Santos, S., et al. (2017). Impact of Alternative Splicing on the Human Proteome. \textit{Cell Reports}, 20, 1229–1241.
 
 [2] Florea, L. (2005). Bioinformatics of alternative splicing and its regulation. \textit{Briefings in Bioinformatics}, 7(1), 55-65.
+
+[3] International Human Genome Sequencing Consortium. (2004). Finishing the euchromatic sequence of the human genome. \textit{Nature}, 431, 931-945.
 
 \end{document} 

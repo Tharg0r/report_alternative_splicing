@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.26)  26 JUN 2025 21:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.26)  26 JUN 2025 22:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -217,20 +217,20 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 (./alternative_splicing_report.aux)
 \openout1 = `alternative_splicing_report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -288,12 +288,12 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 23.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 23.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -303,89 +303,98 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<alt_splicing_figure_1_florea.png, id=10, 449.68pt x 612.2875pt>
+(./alternative_splicing_report.toc)
+\tf@toc=\write3
+\openout3 = `alternative_splicing_report.toc'.
+
+
+
+[2]
+
+[3]
+<alt_splicing_figure_1_florea.png, id=17, 449.68pt x 612.2875pt>
 File: alt_splicing_figure_1_florea.png Graphic file (type png)
 <use alt_splicing_figure_1_florea.png>
-Package pdftex.def Info: alt_splicing_figure_1_florea.png  used on input line 3
-7.
+Package pdftex.def Info: alt_splicing_figure_1_florea.png  used on input line 4
+6.
 (pdftex.def)             Requested size: 273.14923pt x 371.9346pt.
 
 
-[2 <./alt_splicing_figure_1_florea.png>]
+[4 <./alt_splicing_figure_1_florea.png>]
 
-[3]
-<framework_figure_1_liu.png, id=20, 734.745pt x 1094.0875pt>
+[5]
+<framework_figure_1_liu.png, id=26, 734.745pt x 1094.0875pt>
 File: framework_figure_1_liu.png Graphic file (type png)
 <use framework_figure_1_liu.png>
-Package pdftex.def Info: framework_figure_1_liu.png  used on input line 58.
+Package pdftex.def Info: framework_figure_1_liu.png  used on input line 67.
 (pdftex.def)             Requested size: 273.14923pt x 406.74258pt.
 
 
-[4 <./framework_figure_1_liu.png>]
+[6 <./framework_figure_1_liu.png>]
 
-[5{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+[7{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }]
 
-[6]
-Overfull \hbox (11.47972pt too wide) in paragraph at lines 117--118
+[8]
+Overfull \hbox (11.47972pt too wide) in paragraph at lines 126--127
 []\OT1/cmr/m/n/12 Specialized align-ment tools (EST[]GENOME, Sim4, Spidey, Gene
 -Se-qer, BLAT, ESTmap-
  []
 
 
 
-[7]
-<splice_graph_figure_2e_florea.png, id=36, 853.1875pt x 548.0475pt>
+[9]
+<splice_graph_figure_2e_florea.png, id=42, 853.1875pt x 548.0475pt>
 File: splice_graph_figure_2e_florea.png Graphic file (type png)
 <use splice_graph_figure_2e_florea.png>
 Package pdftex.def Info: splice_graph_figure_2e_florea.png  used on input line 
-137.
+146.
 (pdftex.def)             Requested size: 318.66948pt x 204.69777pt.
 
 
-[8]
-
-[9 <./splice_graph_figure_2e_florea.png>]
-
 [10]
-<intron_retention_figure_6_liu.png, id=47, 728.7225pt x 429.605pt>
+
+[11 <./splice_graph_figure_2e_florea.png>]
+
+[12]
+<intron_retention_figure_6_liu.png, id=53, 728.7225pt x 429.605pt>
 File: intron_retention_figure_6_liu.png Graphic file (type png)
 <use intron_retention_figure_6_liu.png>
 Package pdftex.def Info: intron_retention_figure_6_liu.png  used on input line 
-170.
+179.
 (pdftex.def)             Requested size: 227.62206pt x 134.18567pt.
 
 
-[11 <./intron_retention_figure_6_liu.png>]
+[13 <./intron_retention_figure_6_liu.png>]
 
-[12]
+[14]
 
-[13]
-Overfull \hbox (3.58862pt too wide) in paragraph at lines 231--232
+[15]
+Overfull \hbox (3.58862pt too wide) in paragraph at lines 240--241
 \OT1/cmr/m/n/12 pothe-ses about splic-ing reg-u-la-tion and func-tional sig-nif
 -i-cance that can be val-i-dated through
  []
 
 
 
-[14]
+[16]
 
-[15]
+[17]
 
-[16] (./alternative_splicing_report.aux)
+[18] (./alternative_splicing_report.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4889 strings out of 473190
- 77894 string characters out of 5715800
- 484777 words of memory out of 5000000
- 28088 multiletter control sequences out of 15000+600000
+ 4896 strings out of 473190
+ 78086 string characters out of 5715800
+ 485893 words of memory out of 5000000
+ 28092 multiletter control sequences out of 15000+600000
  568892 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,1415b,235s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,6n,65p,1534b,235s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
@@ -394,10 +403,10 @@ sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 /local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
 ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
 cal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on alternative_splicing_report.pdf (16 pages, 373350 bytes).
+Output written on alternative_splicing_report.pdf (18 pages, 376514 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 112 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
