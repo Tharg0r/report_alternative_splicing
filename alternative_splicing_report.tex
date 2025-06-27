@@ -85,7 +85,7 @@ The integrative approach combined two complementary high-throughput technologies
 
 \subsubsection{Data Integration Strategy}
 
-A significant challenge was \textbf{integrating transcriptomic and proteomic datasets}, particularly regarding peptide assignment ([1], pp. 1231-1233). The problem was that many peptides (protein fragments detected by mass spectrometry) could come from multiple different transcript isoforms of the same gene, making it unclear which transcript was actually responsible for producing the detected protein. The study devised a novel strategy that used information from RNA-seq experiments to guide these assignments. They realized that not all transcripts are created equal - for each gene, they focused only on the \textbf{major transcript} (the most abundant isoform being produced). This approach provided much more usable information and better correlations compared to trying to assign peptides to all differently used transcripts regardless of their expression levels, which just added noise to the analysis.
+A significant challenge was \textbf{integrating transcriptomic and proteomic datasets}, particularly regarding peptide assignment ([1], pp. 1231-1233). The problem was that many peptides (protein fragments detected by mass spectrometry) could come from multiple different transcript isoforms of the same gene, making it unclear which transcript was actually responsible for producing the detected protein. Lui et al. (2017) devised a novel strategy that used information from RNA-seq experiments to guide these assignments. They realized that not all transcripts are created equal - for each gene, they focused only on the \textbf{major transcript} (the most abundant isoform being produced). This approach provided much more usable information and better correlations compared to trying to assign peptides to all differently used transcripts regardless of their expression levels, which just added noise to the analysis.
 
 \subsection{Bioinformatics Methods for Alternative Splicing Analysis}
 
@@ -105,7 +105,7 @@ Several computational strategies have been developed to identify splice variants
 
 Key sequence databases utilized in these analyses include \textbf{dbEST} (Database for expressed sequence tags), \textbf{RefSeq} (NCBI's curated full-length mRNA sequences), the \textbf{Mammalian Gene Collection (MGC)} containing full-length open reading frame sequences, and \textbf{UniProt} as the universal protein sequence database ([2], p. 57).
 
-Specialized alignment tools (EST\_GENOME, Sim4, Spidey, GeneSeqer, BLAT, ESTmapper, MGAlignIt, GMAP) have been developed to accurately align cDNA sequences to genomic sequences, accounting for splicing patterns ([2], pp. 57-58).
+Specialized alignment tools (EST\_GENOME [32], Sim4 [33], Spidey [34], GeneSeqer [35], BLAT [36], ESTmapper [37], MGAlignIt [38], GMAP [39]) have been developed to accurately align cDNA sequences to genomic sequences, accounting for splicing patterns ([2], pp. 57-58).
 
 \subsubsection{Transcript Assembly Strategies}
 
@@ -230,5 +230,21 @@ Future research directions should focus on expanding these integrative approache
 [2] Florea, L. (2005). Bioinformatics of alternative splicing and its regulation. \textit{Briefings in Bioinformatics}, 7(1), 55-65.
 
 [3] International Human Genome Sequencing Consortium. (2004). Finishing the euchromatic sequence of the human genome. \textit{Nature}, 431, 931-945.
+
+[32] Mott R. EST\_GENOME: a program to align spliced DNA sequences to unspliced genomic DNA. \textit{Comput Appl Biosci} 1997;3:477–78.
+
+[33] Florea L, Hartzell G, Zhang Z, et al. A computer program for aligning a cDNA sequence with a genomic DNA sequence. \textit{Genome Res} 1998;8:967–74.
+
+[34] Wheelan SJ, Church DM, Ostell JM. Spidey: a tool for mRNA-to-genomic alignments. \textit{Genome Res} 2001;11:1952–57.
+
+[35] Usuka J, Zhu W, Brendel V. Optimal spliced alignment of homologous cDNA to a genomic DNA template. \textit{Bioinformatics} 2000;16:203–11.
+
+[36] Kent WJ. BLAT–the BLAST-like alignment tool. \textit{Genome Res} 2002;12:656–64.
+
+[37] Florea L, Di Francesco V, Miller J, et al. Gene and alternative splicing annotation with AIR. \textit{Genome Res} 2005;15:54–66.
+
+[38] Lee BT, Tan TW, Ranganathan S. MGAlignIt: a web service for the alignment of mRNA/EST and genomic sequences. \textit{Nucleic Acids Res} 2003;31:3533–36.
+
+[39] Wu TD, Watanabe CK. GMAP: a genomic mapping and alignment program for mRNA and EST sequences. \textit{Bioinformatics} 2005;21:59–75.
 
 \end{document} 

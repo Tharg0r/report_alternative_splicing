@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.26)  26 JUN 2025 23:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.26)  26 JUN 2025 23:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -331,12 +331,17 @@ Package pdftex.def Info: framework_figure_1_liu.png  used on input line 67.
 
 
 [6 <./framework_figure_1_liu.png>]
+Overfull \hbox (12.00937pt too wide) in paragraph at lines 82--83
+\OT1/cmr/m/n/12 independent ac-qui-si-tion method en-abled un-bi-ased cap-ture 
+of proteome-wide changes through
+ []
 
-[7{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}]
+
+
+[7]
 
 [8]
-Overfull \hbox (11.47972pt too wide) in paragraph at lines 126--127
+Overfull \hbox (11.47972pt too wide) in paragraph at lines 108--109
 []\OT1/cmr/m/n/12 Specialized align-ment tools (EST[]GENOME, Sim4, Spidey, Gene
 -Se-qer, BLAT, ESTmap-
  []
@@ -344,11 +349,11 @@ Overfull \hbox (11.47972pt too wide) in paragraph at lines 126--127
 
 
 [9]
-<splice_graph_figure_2e_florea.png, id=42, 853.1875pt x 548.0475pt>
+<splice_graph_figure_2e_florea.png, id=41, 853.1875pt x 548.0475pt>
 File: splice_graph_figure_2e_florea.png Graphic file (type png)
 <use splice_graph_figure_2e_florea.png>
 Package pdftex.def Info: splice_graph_figure_2e_florea.png  used on input line 
-146.
+122.
 (pdftex.def)             Requested size: 318.66948pt x 204.69777pt.
 
 
@@ -357,11 +362,11 @@ Package pdftex.def Info: splice_graph_figure_2e_florea.png  used on input line
 [11 <./splice_graph_figure_2e_florea.png>]
 
 [12]
-<intron_retention_figure_6_liu.png, id=53, 728.7225pt x 429.605pt>
+<intron_retention_figure_6_liu.png, id=52, 728.7225pt x 429.605pt>
 File: intron_retention_figure_6_liu.png Graphic file (type png)
 <use intron_retention_figure_6_liu.png>
 Package pdftex.def Info: intron_retention_figure_6_liu.png  used on input line 
-179.
+155.
 (pdftex.def)             Requested size: 227.62206pt x 134.18567pt.
 
 
@@ -370,7 +375,7 @@ Package pdftex.def Info: intron_retention_figure_6_liu.png  used on input line
 [14]
 
 [15]
-Overfull \hbox (3.58862pt too wide) in paragraph at lines 240--241
+Overfull \hbox (3.58862pt too wide) in paragraph at lines 210--211
 \OT1/cmr/m/n/12 pothe-ses about splic-ing reg-u-la-tion and func-tional sig-nif
 -i-cance that can be val-i-dated through
  []
@@ -388,11 +393,11 @@ L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4896 strings out of 473190
- 78086 string characters out of 5715800
+ 4889 strings out of 473190
+ 77953 string characters out of 5715800
  485893 words of memory out of 5000000
- 28092 multiletter control sequences out of 15000+600000
- 568892 words of font info for 74 fonts, out of 8000000 for 9000
+ 28087 multiletter control sequences out of 15000+600000
+ 568555 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,1534b,235s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -401,12 +406,11 @@ Here is how much of TeX's memory you used:
 /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
 sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 /local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
-ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
-cal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on alternative_splicing_report.pdf (18 pages, 377681 bytes).
+ocal/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on alternative_splicing_report.pdf (18 pages, 370581 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 106 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
