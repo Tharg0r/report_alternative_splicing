@@ -26,25 +26,27 @@
 \maketitle
 \newpage
 
-\tableofcontents
-\newpage
-
 \doublespacing
 
 \begin{abstract}
-Alternative splicing (AS) is a fundamental biological process that enables a single gene to produce multiple protein isoforms, significantly contributing to proteomic diversity in eukaryotic organisms. This report examines two influential studies: Liu et al. (2017) ``Impact of Alternative Splicing on the Human Proteome'', which developed an integrative experimental approach combining RNA-seq with mass spectrometry to quantitatively assess how splicing perturbations affect proteome composition, and Florea (2005) ``Bioinformatics of alternative splicing and its regulation'', which provides a comprehensive overview of bioinformatics methods for identifying and characterizing alternative splicing events and their regulatory elements. The integrative approach successfully demonstrated that changes in mRNA splicing patterns translate into measurable protein abundance changes, with intron retention consistently associated with decreased protein levels and differential transcript usage producing proportionate protein changes. Bioinformatics methods ranging from sequence comparison to splice graph modeling have proven effective for cataloguing splicing variants, though challenges remain in distinguishing biologically relevant isoforms from computational artifacts. These advances establish a foundation for therapeutic interventions targeting splicing defects in human diseases and open new possibilities for personalized medicine approaches based on isoform signatures.
+Alternative splicing (AS) is a fundamental biological process that enables a single gene to produce multiple protein isoforms, significantly contributing to proteomic diversity in eukaryotic organisms. This report examines two influential studies: [1] ``Impact of Alternative Splicing on the Human Proteome'', which developed an integrative experimental approach combining RNA-seq with mass spectrometry to quantitatively assess how splicing perturbations affect proteome composition, and [2] ``Bioinformatics of alternative splicing and its regulation'', which provides a comprehensive overview of bioinformatics methods for identifying and characterizing alternative splicing events and their regulatory elements. The integrative approach successfully demonstrated that changes in mRNA splicing patterns translate into measurable protein abundance changes, with intron retention consistently associated with decreased protein levels and differential transcript usage producing proportionate protein changes. Bioinformatics methods ranging from sequence comparison to splice graph modeling have proven effective for cataloguing splicing variants, though challenges remain in distinguishing biologically relevant isoforms from computational artifacts. These advances establish a foundation for therapeutic interventions targeting splicing defects in human diseases and open new possibilities for personalized medicine approaches based on isoform signatures.
 \end{abstract}
 
+\newpage
+
+\tableofcontents
 \newpage
 
 \section{Introduction}
 
 Alternative splicing (AS) represents one of the most important mechanisms by which eukaryotic organisms achieve biological complexity from a relatively limited genetic repertoire. This process allows a single gene to produce multiple messenger RNA (mRNA) and protein isoforms by selectively combining different exons during RNA processing. The significance of alternative splicing becomes apparent when considering that humans possess only approximately 25,000 protein-coding genes ([3]), yet produce hundreds of thousands of distinct proteins with diverse functions, localizations, and regulatory properties.
 
+Figure~\ref{fig:alt_splicing_types} illustrates the main types of alternative splicing events that contribute to this proteomic diversity.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{alt_splicing_figure_1_florea.png}
-\caption{Types of alternative splicing events: (a) exon inclusion/exclusion; (b) alternative 3' end; (c) alternative 5' end; (d) intron retention; (e,f) alternative UTRs. Adapted from Florea (2005).}
+\caption{Types of alternative splicing events: (a) exon inclusion/exclusion; (b) alternative 3' end; (c) alternative 5' end; (d) intron retention; (e,f) alternative UTRs. Adapted from [2].}
 \label{fig:alt_splicing_types}
 \end{figure}
 
@@ -60,12 +62,12 @@ This report examines two complementary approaches to understanding alternative s
 
 \subsection{Integrative Experimental Methods}
 
-Liu et al. (2017) developed a comprehensive experimental framework to quantitatively assess the impact of alternative splicing perturbations on proteome composition ([1], p. 1229). Their approach represents a significant methodological advance by directly linking transcriptomic changes to proteomic outcomes.
+A comprehensive experimental framework was developed to quantitatively assess the impact of alternative splicing perturbations on proteome composition ([1], p. 1229). Their approach represents a significant methodological advance by directly linking transcriptomic changes to proteomic outcomes, as shown in Figure~\ref{fig:experimental_framework}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{framework_figure_1_liu.png}
-\caption{Experimental framework integrating RNA-seq and mass spectrometry to study alternative splicing impact on the proteome. Adapted from Liu et al. (2017).}
+\caption{Experimental framework integrating RNA-seq and mass spectrometry to study alternative splicing impact on the proteome. Adapted from [1].}
 \label{fig:experimental_framework}
 \end{figure}
 
@@ -85,11 +87,11 @@ The integrative approach combined two complementary high-throughput technologies
 
 \subsubsection{Data Integration Strategy}
 
-A significant challenge was \textbf{integrating transcriptomic and proteomic datasets}, particularly regarding peptide assignment ([1], pp. 1231-1233). The problem was that many peptides (protein fragments detected by mass spectrometry) could come from multiple different transcript isoforms of the same gene, making it unclear which transcript was actually responsible for producing the detected protein. Lui et al. (2017) devised a novel strategy that used information from RNA-seq experiments to guide these assignments. They realized that not all transcripts are created equal - for each gene, they focused only on the \textbf{major transcript} (the most abundant isoform being produced). This approach provided much more usable information and better correlations compared to trying to assign peptides to all differently used transcripts regardless of their expression levels, which just added noise to the analysis.
+A significant challenge was \textbf{integrating transcriptomic and proteomic datasets}, particularly regarding peptide assignment ([1], pp. 1231-1233). The problem was that many peptides (protein fragments detected by mass spectrometry) could come from multiple different transcript isoforms of the same gene, making it unclear which transcript was actually responsible for producing the detected protein. A novel strategy was devised that used information from RNA-seq experiments to guide these assignments ([1]). They realized that not all transcripts are created equal - for each gene, they focused only on the \textbf{major transcript} (the most abundant isoform being produced). This approach provided much more usable information and better correlations compared to trying to assign peptides to all differently used transcripts regardless of their expression levels, which just added noise to the analysis.
 
 \subsection{Bioinformatics Methods for Alternative Splicing Analysis}
 
-Florea (2005) provides a comprehensive survey of bioinformatics approaches developed to identify, characterize, and catalog alternative splicing events and their regulatory mechanisms ([2], p. 57).
+A comprehensive survey of bioinformatics approaches has been developed to identify, characterize, and catalog alternative splicing events and their regulatory mechanisms ([2], p. 57).
 
 \subsubsection{Sequence-Based Detection Methods}
 
@@ -115,12 +117,12 @@ Two main bioinformatics approaches have emerged for annotating alternatively spl
 
 \textbf{Genome-based clustering and assembly} addresses many limitations of gene indices by clustering spliced alignments at genomic loci, using the high-quality reference genome sequence as a framework ([2], pp. 59-60). This approach helps resolve issues with contamination and sequencing errors found in EST-based methods. A particularly important innovation is the \textbf{splice graph} representation, which provides a systematic framework for modeling and analyzing all possible splicing patterns within a gene ([2], p. 60). The splice graph represents a gene as a directed acyclic graph where exons are represented as vertices, introns are represented as arcs connecting exons, different splice variants correspond to different paths through the graph from start to finish, and all possible transcript candidates can be systematically enumerated.
 
-While this approach enables comprehensive enumeration of transcript possibilities, a major limitation is that some computationally predicted combinations may represent artificial constructs without biological relevance. Methods like the AIR annotation pipeline and ECgene attempt to address this by scoring and prioritizing candidates based on the strength of supporting evidence, helping to distinguish biologically relevant isoforms from computational artifacts ([2], p. 60).
+While this approach enables comprehensive enumeration of transcript possibilities, a major limitation is that some computationally predicted combinations may represent artificial constructs without biological relevance. Methods like the AIR annotation pipeline and ECgene attempt to address this by scoring and prioritizing candidates based on the strength of supporting evidence, helping to distinguish biologically relevant isoforms from computational artifacts ([2], p. 60). Figure~\ref{fig:splice_graph} demonstrates how splice graphs are constructed from EST and cDNA evidence to represent alternative splicing patterns.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{splice_graph_figure_2e_florea.png}
-\caption{EST sequences from the 5' and 3' ends of the gene are compared to identify compatible overlaps and then assembled into consensus sequences (TC1, TC2) representing putative splice variants. Spliced alignments of cDNAs on the genome (E1-E5) are clustered along the genomic axis and consolidated into splice graphs. Vertices in the splice graph represent exons (a-h), arcs are introns connecting the exons consistently with the cDNA evidence, and a branching in the graph signals an alternative splicing event. Splice variants (V1-V4) are read from the graph as paths from a source vertex (with no 'in' arc) to a sink vertex (with no 'out' arc). Adapted from Florea (2005).}
+\caption{EST sequences from the 5' and 3' ends of the gene are compared to identify compatible overlaps and then assembled into consensus sequences (TC1, TC2) representing putative splice variants. Spliced alignments of cDNAs on the genome (E1-E5) are clustered along the genomic axis and consolidated into splice graphs. Vertices in the splice graph represent exons (a-h), arcs are introns connecting the exons consistently with the cDNA evidence, and a branching in the graph signals an alternative splicing event. Splice variants (V1-V4) are read from the graph as paths from a source vertex (with no 'in' arc) to a sink vertex (with no 'out' arc). Adapted from [2].}
 \label{fig:splice_graph}
 \end{figure}
 
@@ -142,18 +144,18 @@ Several computational approaches have been developed to identify cis-regulatory 
 
 \subsection{Effectiveness of Integrative Experimental Approaches}
 
-The integrative methodology developed by Liu et al. (2017) demonstrates several significant strengths in quantitatively linking splicing changes to proteomic outcomes.
+The integrative methodology demonstrates several significant strengths in quantitatively linking splicing changes to proteomic outcomes ([1]).
 
 \subsubsection{Quantitative Validation of Splicing Impact}
 
 The approach successfully provided quantitative evidence for specific relationships between splicing events and protein abundance:
 
-\textbf{Intron retention correlation}: The method consistently demonstrated that intron retention events are associated with decreased protein abundance ([1], p. 1237). Introns are the non-coding segments that are normally removed during RNA processing. When introns are unexpectedly retained (kept in) the final mRNA, this consistently leads to less protein being made. This occurs because these faulty mRNAs might get stuck in the nucleus (unable to reach the protein-making machinery) or get destroyed by the cell's quality control system called nonsense-mediated decay (NMD), which cleans up potentially problematic messages.
+\textbf{Intron retention correlation}: The method consistently demonstrated that intron retention events are associated with decreased protein abundance ([1], p. 1237). Introns are the non-coding segments that are normally removed during RNA processing. When introns are unexpectedly retained (kept in) the final mRNA, this consistently leads to less protein being made. This occurs because these faulty mRNAs might get stuck in the nucleus (unable to reach the protein-making machinery) or get destroyed by the cell's quality control system called nonsense-mediated decay (NMD), which cleans up potentially problematic messages. This relationship is clearly demonstrated in Figure~\ref{fig:intron_retention}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{intron_retention_figure_6_liu.png}
-\caption{Intron retention reduces protein levels compared to genes without retained introns. Adapted from Liu et al. (2017).}
+\caption{Intron retention reduces protein levels compared to genes without retained introns. Adapted from [1].}
 \label{fig:intron_retention}
 \end{figure}
 
@@ -177,7 +179,7 @@ Despite its successes, the approach faces several limitations:
 
 \subsection{Assessment of Bioinformatics Methods}
 
-The bioinformatics approaches surveyed by Florea (2005) show varying degrees of effectiveness depending on the specific application and available data.
+The bioinformatics approaches show varying degrees of effectiveness depending on the specific application and available data ([2]).
 
 \subsubsection{Strengths of Current Methods}
 
@@ -213,7 +215,7 @@ When evaluated together, the experimental and bioinformatics approaches show com
 
 \section{Conclusion}
 
-The analysis of these complementary approaches to studying alternative splicing reveals significant advances in our ability to understand and quantify the relationship between splicing patterns and proteome composition. The integrative experimental methodology developed by Liu et al. (2017) represents a breakthrough in directly measuring how splicing perturbations translate into functional proteomic changes, while the bioinformatics frameworks surveyed by Florea (2005) provide the computational foundation for systematic analysis of splicing diversity and regulation.
+The analysis of these complementary approaches to studying alternative splicing reveals significant advances in our ability to understand and quantify the relationship between splicing patterns and proteome composition. The integrative experimental methodology ([1]) represents a breakthrough in directly measuring how splicing perturbations translate into functional proteomic changes, while the bioinformatics frameworks ([2]) provide the computational foundation for systematic analysis of splicing diversity and regulation.
 
 The key findings demonstrate that alternative splicing serves as a critical regulatory mechanism that functionally tunes the human proteome. The quantitative evidence shows that changes in isoform usage manifest as measurable protein abundance changes, with clear relationships between specific splicing events and their proteomic consequences. The successful demonstration of functional significance through examples like LAP2 isoform switching validates alternative splicing as a mechanism for achieving biological complexity from limited genetic resources.
 
